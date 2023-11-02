@@ -28,7 +28,7 @@ describe("ShopCategory component", () => {
         expect(nonexistentComponent).toBe(null);
     });
 
-    it("converts the category 'Home Decor' to 'home-decor'", () => {
+    it("converts the category name 'Home Decor' to 'home-decor'", () => {
         render (
             <BrowserRouter>
                 <ShopCategory image="#" categoryName="Home Decor" />
@@ -40,7 +40,7 @@ describe("ShopCategory component", () => {
         expect(homeDecorComponent).toHaveAttribute("href", "/categories/home-decor");
     });
 
-    it("renders with a link to /category/lighting", () => {
+    it("renders with a link to /categories/lighting", () => {
         render (
             <BrowserRouter>
                 <ShopCategory image="#" categoryName="lighting" />
