@@ -1,17 +1,10 @@
-/* 
-NEED TO TEST: <ShopCategory prop={prop} /> 
-    - accepts a prop
-    - button text is correct (e.g., "Shop _clothing_")
-    - links to the correct urls
-*/
-
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import ShopCategory from "../components/ShopCategory/ShopCategory";
 
 describe("ShopCategory component", () => {
-    it("renders when a prop of type string is passed in", () => {
+    it("renders when all props are passed in", () => {
         render (
             <BrowserRouter>
                 <ShopCategory image="#" categoryName="all" />
@@ -35,6 +28,18 @@ describe("ShopCategory component", () => {
         expect(nonexistentComponent).toBe(null);
     });
 
+    it("converts the category 'Home Decor' to 'home-decor'", () => {
+        render (
+            <BrowserRouter>
+                <ShopCategory image="#" categoryName="Home Decor" />
+            </BrowserRouter>
+        );
+
+        const homeDecorComponent = screen.getByRole("link", { name: "Shop Home Decor" });
+
+        expect(homeDecorComponent).toHaveAttribute("href", "/categories/home-decor");
+    });
+
     it("renders with a link to /category/lighting", () => {
         render (
             <BrowserRouter>
@@ -44,7 +49,7 @@ describe("ShopCategory component", () => {
 
         const lightingComponent = screen.getByRole("link", { name: "Shop lighting" });
 
-        expect(lightingComponent).toHaveAttribute("href", "/category/lighting");
+        expect(lightingComponent).toHaveAttribute("href", "/categories/lighting");
     });
 
     it("renders with an image and a shop button", () => {
