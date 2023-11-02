@@ -1,19 +1,34 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import App from "../components/App";
 
 describe("App component (home page)", () => {
+    it("shows a loading screen while fetching for data", async () => {        
+        act(() => {
+            render(
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            );
+        });
+
+        const loadingText = screen.getByText("Loading...");
+
+        expect(loadingText).toBeInTheDocument();
+    })
+
     it("renders nav bar", () => {
         render(
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-        );
+        )
 
-        const navbar = screen.getByRole("navigation", { name: "Navbar" });
-
-        expect(navbar).toBeInTheDocument();
+        waitFor(() => {
+            expect(screen.getByRole("navigation", { name: "Navbar" }))
+                .toBeInTheDocument();
+        });
     });
 
     it("renders shop overview content", () => {
@@ -21,10 +36,10 @@ describe("App component (home page)", () => {
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-        );
+        )
 
-        const container = screen.getByRole("main", { name: "" });
-
-        expect(container).toBeInTheDocument();
+        waitFor(() => {
+            expect(screen.getByRole("main", { name: "" })).toBeInTheDocument();
+        })
     });
 })
