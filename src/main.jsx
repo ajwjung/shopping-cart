@@ -1,8 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import App from './components/App.jsx'
-import Shop from "./components/Shop/Shop.jsx"
+import React from "react"
+import ReactDOM from "react-dom/client"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import App from "./components/App.jsx"
+import ShopMain from "./components/ShopPages/ShopMain.jsx"
 import Cart from "./components/Cart/Cart.jsx"
 import './index.css'
 
@@ -13,10 +13,10 @@ const router = createBrowserRouter([
   },
   {
     path: "categories/:category",
-    element: <Shop />,
+    element: <ShopMain />,
   },
   {
-    path: "/cart",
+    path: "cart",
     element: <Cart />,
   }
 ])
