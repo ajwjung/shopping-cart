@@ -24,7 +24,7 @@ describe("Navbar component", () => {
         );
 
         const homeLink = screen.getByRole("link", { name: "Home" });
-        const shopLink = screen.getByRole("link", { name: "Shop Allq" });
+        const shopLink = screen.getByRole("link", { name: "Shop All" });
 
         expect(homeLink).toHaveAttribute("href", "/");
         expect(shopLink).toHaveAttribute("href", "/categories/all");
