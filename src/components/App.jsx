@@ -1,65 +1,35 @@
-import { useState, useEffect } from "react";
-import Navbar from "./Navbar/Navbar";
-import ShopCategory from "./ShopCategory/ShopCategory";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import loader from "../scripts/dataFetch";
+import Home from "./Home/Home.jsx";
+import ShopMain from "./ShopPages/ShopMain.jsx";
+import Cart from "./Cart/Cart.jsx";
+import ErrorPage from "./ErrorPage/ErrorPage.jsx"
 
-function useAllData() {
-  let [lighting, setLighting] = useState(null);
-  let [homeDecor, setHomeDecor] = useState(null);
-  let [furniture, setFurniture] = useState(null);
-  let [error, setError] = useState(null);
-  let [loading, setLoading] = useState(true);
-
-  async function dataFetch() {
-    try {
-      const result = (
-        await Promise.all([
-          fetch("https://dummyjson.com/products/category/lighting"),
-          fetch("https://dummyjson.com/products/category/home-decoration"),
-          fetch("https://dummyjson.com/products/category/furniture"),
-        ])
-      ).map((response) => {
-        if (response.status >= 400) {
-          throw new Error("server error");
-        }
-
-        return response.json();
-      });
-
-      const [lightingResult, homeDecorResult, furnitureResult] = 
-        await Promise.all(result);
-
-      setLighting(lightingResult);
-      setHomeDecor(homeDecorResult);
-      setFurniture(furnitureResult);
-    } catch(error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "categories/:category",
+    element: <ShopMain />,
+    loader: (() => {
+      return loader();
+    }),
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "cart",
+    element: <Cart />,
+    errorElement: <ErrorPage />
   }
-
-  useEffect(() => {
-    dataFetch();
-  }, []);
-
-  return { lighting, homeDecor, furniture, error, loading }
-}
+])
 
 function App() {
-  const { lighting, homeDecor, furniture, error, loading } = useAllData();
-
-  if (error) return <p>A network error was encountered</p>;
-  if (loading) return <p>Loading...</p>;
-
   return (
     <>
-      <Navbar />
-      <main className="home-content">
-        <ShopCategory image="#" categoryName="All" />
-        <ShopCategory image="#" categoryName="Lighting" />
-        <ShopCategory image="#" categoryName="Home Decor" />
-        <ShopCategory image="#" categoryName="Furniture" />
-      </main>
+      <RouterProvider router={router} />
     </>
   )
 }

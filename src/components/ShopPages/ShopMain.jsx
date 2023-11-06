@@ -1,6 +1,7 @@
 import Navbar from "../Navbar/Navbar";
 import { useParams } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
+import { useLoaderData } from "react-router-dom";
 import PropTypes from "prop-types";
 import DefaultShop from "./DefaultShop.jsx"
 import AllProducts from "./AllProducts.jsx"
@@ -10,6 +11,8 @@ import Furniture from "./Furniture.jsx"
 
 function ShopMain() {
     const { category } = useParams();
+    const data = useLoaderData();
+    console.log([...data]);
 
     return (
         <>
