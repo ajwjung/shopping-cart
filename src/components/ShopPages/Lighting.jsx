@@ -1,7 +1,9 @@
 import ProductCard from "../ProductCard/ProductCard";
-import PropTypes from "prop-types";
+import { useLoaderData } from "react-router-dom";
 
-function Lighting({ lightingData }) {
+function Lighting() {
+    const lightingData = useLoaderData()[0].products;
+
     return (
         <div className="allProducts">
             <h1 className="pageHeading">Lighting</h1>
@@ -15,10 +17,6 @@ function Lighting({ lightingData }) {
             </div>
         </div>
     )
-}
-
-Lighting.propTypes = {
-    lightingData: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default Lighting;

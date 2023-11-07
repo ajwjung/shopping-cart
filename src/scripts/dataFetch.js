@@ -13,11 +13,6 @@ async function loader() {
         return response.json();
     });
 
-    // const [lightingResult, homeDecorResult, furnitureResult] = 
-    //     await Promise.all(result);
-
-    // return { lightingResult, homeDecorResult, furnitureResult }
-
     return await Promise.all(result);
 }
 

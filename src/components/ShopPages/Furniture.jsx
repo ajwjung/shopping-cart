@@ -1,7 +1,9 @@
 import ProductCard from "../ProductCard/ProductCard";
-import PropTypes from "prop-types";
+import { useLoaderData } from "react-router-dom";
 
-function Furniture({ furnitureData }) {
+function Furniture() {
+    const furnitureData = useLoaderData()[2].products;
+
     return (
         <div className="allProducts">
             <h1 className="pageHeading">Furniture</h1>
@@ -15,10 +17,6 @@ function Furniture({ furnitureData }) {
             </div>
         </div>
     )
-}
-
-Furniture.propTypes = {
-    furnitureData: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default Furniture;
