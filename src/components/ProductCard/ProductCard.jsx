@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function ProductCard({ product }) {
     return (
-        product && <Link to={`/categories/${product.category}/${product.id}`}>
+        product && <Link to={`/product/${product.id}`}>
             <img
                 className="thumbnail"
                 src={product.thumbnail}

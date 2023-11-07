@@ -47,7 +47,7 @@ describe("ProductCard component", () => {
         expect(nonexistentBrand).toBe(null);
     });
 
-    it("renders a product card linked to '/categories/furniture/31'", () => {
+    it("renders a product card linked to '/product/31'", () => {
         const fakeProduct = {
             thumbnail: "",
             title: "Dummy",
@@ -60,13 +60,13 @@ describe("ProductCard component", () => {
 
         const routes = [
             {
-                path: "/categories/:category/:id",
+                path: "/product/:id",
                 element: <ProductCard product={fakeProduct} />
             }
         ];
 
         const router = createMemoryRouter(routes, {
-            initialEntries: ["/categories/furniture/31"],
+            initialEntries: ["/product/31"],
             initialIndex: 1,
         });
 
@@ -78,6 +78,6 @@ describe("ProductCard component", () => {
             "Dummy Dummy Fake Brand 3.8 $39.99" 
         });
 
-        expect(card).toHaveAttribute("href", "/categories/furniture/31")
+        expect(card).toHaveAttribute("href", "/product/31")
     });
 });
