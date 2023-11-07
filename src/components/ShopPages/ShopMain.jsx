@@ -1,8 +1,6 @@
 import Navbar from "../Navbar/Navbar";
 import { useParams } from "react-router-dom";
-import ProductCard from "../ProductCard/ProductCard";
 import { useLoaderData } from "react-router-dom";
-import PropTypes from "prop-types";
 import DefaultShop from "./DefaultShop.jsx"
 import AllProducts from "./AllProducts.jsx"
 import Lighting from "./Lighting.jsx"
@@ -11,34 +9,30 @@ import Furniture from "./Furniture.jsx"
 
 function ShopMain() {
     const { category } = useParams();
-    const data = useLoaderData();
-    console.log([...data]);
+    const [lighting, homeDecor, furniture] = useLoaderData();
 
     return (
         <>
             <Navbar />
             <main>
                 {category === "home-decor" ? (
-                    <HomeDecor />
+                    <HomeDecor homeDecorData={homeDecor.products} />
                 ) : category === "lighting" ? (
-                    <Lighting />
+                    <Lighting lightingData={lighting.products} />
                 ) : category === "furniture" ? (
-                    <Furniture />
+                    <Furniture furnitureData={furniture.products} />
                 ) : category === "all" ? (
-                    <AllProducts />
+                    <AllProducts allProductData={[
+                        ...lighting.products,
+                        ...homeDecor.products,
+                        ...furniture.products
+                    ]} />
                 ) : (
                     <DefaultShop />
                 )}
-                {/* {allProducts && allProducts.map(product => {
-                    return <ProductCard product={product} key={product.id} />
-                })} */}
             </main>
         </>
     )
-}
-
-ShopMain.propTypes = {
-    allProducts: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default ShopMain;
