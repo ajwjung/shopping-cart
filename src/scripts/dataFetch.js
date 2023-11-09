@@ -1,9 +1,15 @@
 async function loader() {
     const result = (
         await Promise.all([
-            fetch("https://dummyjson.com/products/category/lighting"),
-            fetch("https://dummyjson.com/products/category/home-decoration"),
-            fetch("https://dummyjson.com/products/category/furniture"),
+            fetch("https://dummyjson.com/products/category/lighting",
+                { mode: "cors" }
+            ),
+            fetch("https://dummyjson.com/products/category/home-decoration",
+                { mode: "cors" }
+            ),
+            fetch("https://dummyjson.com/products/category/furniture",
+                { mode: "cors" }
+            ),
         ])
     ).map((response) => {
         if (response.status >= 400) {
