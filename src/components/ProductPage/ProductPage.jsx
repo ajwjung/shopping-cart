@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import Navbar from "../Navbar/Navbar";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
@@ -34,6 +34,10 @@ function useProductData(productId) {
     return { productData, error, loading };
 }
 
+export const ShopContext = createContext({
+    cartedItems: [],
+})
+
 function ProductPage() {
     const { productId } = useParams();
     const { productData, error, loading } = useProductData(productId);
@@ -61,14 +65,14 @@ function ProductPage() {
             setCartedItems([
                 ...cartedItems, 
                 {
-                    id: productId,
+                    id: Number(productId),
                     quantity: quantity
                 }
             ]);
         } else {
             // Add more of an existing product to cart
             const updatedCartedItems = cartedItems.map(item => {
-                if (item.id === productId) {
+                if (item.id === Number(productId)) {
                     return (
                         {
                             ...item,
@@ -80,7 +84,7 @@ function ProductPage() {
                 }
             });
 
-            setCartedItems(updatedCartedItems)
+            setCartedItems(updatedCartedItems);
         }
     }
 
@@ -89,41 +93,43 @@ function ProductPage() {
 
     return (
         <>
-            <Navbar />
-            <main className="product" >
-                <img src={productData.thumbnail} alt={productData.title} />
-                <div className="productInfo">
-                    <h1 className="productName">{productData.title}</h1>
-                    <h2 className="productBrand">{productData.brand}</h2>
-                    <p className="productRating">{productData.rating} rating</p>
-                    <p className="productPrice">${productData.price}</p>
-                    <div className="qtyBtns">
+            <ShopContext.Provider value={{ cartedItems }}>
+                <Navbar />
+                <main className="product" >
+                    <img src={productData.thumbnail} alt={productData.title} />
+                    <div className="productInfo">
+                        <h1 className="productName">{productData.title}</h1>
+                        <h2 className="productBrand">{productData.brand}</h2>
+                        <p className="productRating">{productData.rating} rating</p>
+                        <p className="productPrice">${productData.price}</p>
+                        <div className="qtyBtns">
+                            <button 
+                                onClick={handleChangeQuantity}
+                                className="decrement" 
+                                type="button"
+                            >-</button>
+                            <label htmlFor="quantity">Quantity</label>
+                            <input 
+                                type="text" 
+                                id="quantity" 
+                                name="quantity" 
+                                value={quantity}
+                                onChange={handleChangeQuantity}
+                            />
+                            <button 
+                                onClick={handleChangeQuantity}
+                                className="increment" 
+                                type="button"
+                            >+</button>
+                        </div>
                         <button 
-                            onClick={handleChangeQuantity}
-                            className="decrement" 
+                            onClick={handleAddToCart}
+                            className="addToCart" 
                             type="button"
-                        >-</button>
-                        <label htmlFor="quantity">Quantity</label>
-                        <input 
-                            type="text" 
-                            id="quantity" 
-                            name="quantity" 
-                            value={quantity}
-                            onChange={handleChangeQuantity}
-                        />
-                        <button 
-                            onClick={handleChangeQuantity}
-                            className="increment" 
-                            type="button"
-                        >+</button>
+                        >Add to Cart</button>
                     </div>
-                    <button 
-                        onClick={handleAddToCart}
-                        className="addToCart" 
-                        type="button"
-                    >Add to Cart</button>
-                </div>
-            </main>
+                </main>
+            </ShopContext.Provider>
         </>
     )
 }
