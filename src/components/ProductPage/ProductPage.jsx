@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import Navbar from "../Navbar/Navbar";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import { ShopContext } from "../App";
+import RatingStars from "./RatingStars";
 
 function useProductData(productId) {
     const [productData, setProductData] = useState(null);
@@ -65,44 +66,47 @@ function ProductPage() {
 
     return (
         <>
-                <Navbar />
-                <main className="product" >
-                    <img src={productData.thumbnail} alt={productData.title} />
-                    <div className="productInfo">
-                        <h1 className="productName">{productData.title}</h1>
-                        <h2 className="productBrand">{productData.brand}</h2>
-                        <p className="productRating">{productData.rating} rating</p>
-                        <p className="productPrice">${productData.price}</p>
-                        <div className="qtyBtns">
-                            <button 
-                                onClick={handleChangeQuantity}
-                                className="decrement" 
-                                type="button"
-                            >-</button>
-                            <label htmlFor="quantity">Quantity</label>
-                            <input 
-                                type="text" 
-                                id="quantity" 
-                                name="quantity" 
-                                value={quantity}
-                                onChange={handleChangeQuantity}
-                                pattern="[0-9]*"
-                            />
-                            <button 
-                                onClick={handleChangeQuantity}
-                                className="increment" 
-                                type="button"
-                            >+</button>
-                        </div>
+            <Navbar />
+            <main className="product" >
+                <img src={productData.thumbnail} alt={productData.title} />
+                <div className="productInfo">
+                    <h1 className="productName">{productData.title}</h1>
+                    <h2 className="productBrand">{productData.brand}</h2>
+                    <p className="productRating">
+                        <RatingStars rating={productData.rating} /> 
+                        {productData.rating} rating
+                    </p>
+                    <p className="productPrice">${productData.price}</p>
+                    <div className="qtyBtns">
                         <button 
-                            onClick={() => {
-                                handleAddToCart(productId, quantity);
-                            }}
-                            className="addToCart" 
+                            onClick={handleChangeQuantity}
+                            className="decrement" 
                             type="button"
-                        >Add to Cart</button>
+                        >-</button>
+                        <label htmlFor="quantity">Quantity</label>
+                        <input 
+                            type="text" 
+                            id="quantity" 
+                            name="quantity" 
+                            value={quantity}
+                            onChange={handleChangeQuantity}
+                            pattern="[0-9]*"
+                        />
+                        <button 
+                            onClick={handleChangeQuantity}
+                            className="increment" 
+                            type="button"
+                        >+</button>
                     </div>
-                </main>
+                    <button 
+                        onClick={() => {
+                            handleAddToCart(productId, quantity);
+                        }}
+                        className="addToCart" 
+                        type="button"
+                    >Add to Cart</button>
+                </div>
+            </main>
         </>
     )
 }

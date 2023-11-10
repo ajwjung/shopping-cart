@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import RatingStars from "../ProductPage/RatingStars";
 
 function ProductCard({ product }) {
     return (
@@ -11,7 +12,10 @@ function ProductCard({ product }) {
             />
             <h2 className="productName">{product.title}</h2>
             <p className="productBrand">{product.brand}</p>
-            <p className="productRating">{product.rating} rating</p>
+            <p className="productRating">
+                <RatingStars rating={product.rating} />
+                {product.rating} rating
+            </p>
             <p className="productPrice">{`$${product.price}`}</p>
         </Link>
     )
