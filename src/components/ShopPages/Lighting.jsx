@@ -1,14 +1,10 @@
 import ProductCard from "../ProductCard/ProductCard";
 import { useLoaderData } from "react-router-dom";
-import { useContext } from "react";
-import { ShopContext } from "../ProductPage/ProductPage";
 
 function Lighting() {
     const lightingData = useLoaderData()[0].products;
-    const { cartedItems } = useContext(ShopContext);
 
     return (
-        <ShopContext.Provider value={{ cartedItems }}>
             <div className="allProducts">
                 <h1 className="pageHeading">Lighting</h1>
                 <div className="productsContainer" data-testid="products">
@@ -20,7 +16,6 @@ function Lighting() {
                     })}
                 </div>
             </div>
-        </ShopContext.Provider>
     )
 }
 

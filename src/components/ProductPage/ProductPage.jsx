@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import Navbar from "../Navbar/Navbar";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import { ShopContext } from "../App";
 
 function useProductData(productId) {
     const [productData, setProductData] = useState(null);
@@ -34,15 +35,11 @@ function useProductData(productId) {
     return { productData, error, loading };
 }
 
-export const ShopContext = createContext({
-    cartedItems: [],
-})
-
 function ProductPage() {
     const { productId } = useParams();
     const { productData, error, loading } = useProductData(productId);
     const [quantity, setQuantity] = useState(1);
-    const [cartedItems, setCartedItems] = useState([]);
+    const { handleAddToCart } = useContext(ShopContext);
 
     function handleChangeQuantity(e) {
         if (e.target.className === "decrement") {
@@ -59,41 +56,11 @@ function ProductPage() {
         }
     }
 
-    function handleAddToCart() {
-        if (cartedItems.length === 0) {
-            // First item carted
-            setCartedItems([
-                ...cartedItems, 
-                {
-                    id: Number(productId),
-                    quantity: quantity
-                }
-            ]);
-        } else {
-            // Add more of an existing product to cart
-            const updatedCartedItems = cartedItems.map(item => {
-                if (item.id === Number(productId)) {
-                    return (
-                        {
-                            ...item,
-                            quantity: item.quantity + quantity
-                        }
-                    )
-                } else {
-                    return item;
-                }
-            });
-
-            setCartedItems(updatedCartedItems);
-        }
-    }
-
     if (error) return <ErrorPage />;
     if (loading) return <p>Loading...</p>;
 
     return (
         <>
-            <ShopContext.Provider value={{ cartedItems }}>
                 <Navbar />
                 <main className="product" >
                     <img src={productData.thumbnail} alt={productData.title} />
@@ -110,11 +77,12 @@ function ProductPage() {
                             >-</button>
                             <label htmlFor="quantity">Quantity</label>
                             <input 
-                                type="text" 
+                                type="number" 
                                 id="quantity" 
                                 name="quantity" 
                                 value={quantity}
                                 onChange={handleChangeQuantity}
+                                min={1}
                             />
                             <button 
                                 onClick={handleChangeQuantity}
@@ -123,13 +91,14 @@ function ProductPage() {
                             >+</button>
                         </div>
                         <button 
-                            onClick={handleAddToCart}
+                            onClick={() => {
+                                handleAddToCart(productId, quantity);
+                            }}
                             className="addToCart" 
                             type="button"
                         >Add to Cart</button>
                     </div>
                 </main>
-            </ShopContext.Provider>
         </>
     )
 }
