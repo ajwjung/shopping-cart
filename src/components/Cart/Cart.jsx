@@ -1,9 +1,21 @@
-import Navbar from "../Navbar/Navbar";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { ShopContext } from "../App";
+import Navbar from "../Navbar/Navbar";
 
 function CartItem({ item }) {
+    const { products, handleUpdateQty } = useContext(ShopContext);
+
     function calculateSubtotal(qty, price) {
         return Math.round((Number(qty) * Number(price)) * 100) / 100;
+    }
+
+    function getProductId(productName, products) {
+        const match = products.find((item) => {
+            return item.title === productName
+        });
+
+        return match.id;
     }
 
     return (
@@ -15,8 +27,19 @@ function CartItem({ item }) {
                 <p>{item.title}</p>
             </td>
             <td>
-                <input type="text" id="quantity" name="quantity" 
-                value={item.quantity} min="0" />
+                <input 
+                    type="text" 
+                    id="quantity" 
+                    name="quantity" 
+                    value={item.quantity} 
+                    onChange={(e) => {
+                        console.log(e.target.value);
+                        const productName = e.target.closest("tr").querySelector("td > p").textContent;
+                        const productId = getProductId(productName, products);
+                        handleUpdateQty(productId, e.target.value)
+                    }}
+                    pattern="[0-9]*"
+                />
             </td>
             <td>
                 <p>${item.price}</p>
@@ -27,7 +50,11 @@ function CartItem({ item }) {
             <td>
                 <button 
                     className="removeItem" 
-                    onClick={(e) => { e.preventDefault() }} 
+                    onClick={(e) => { 
+                        const productName = e.target.closest("tr").querySelector("td > p").textContent;
+                        const productId = getProductId(productName, products);
+                        handleUpdateQty(productId, 0);
+                    }} 
                     type="button"
                 >X</button>
             </td>
@@ -39,25 +66,28 @@ CartItem.propTypes = {
     item: PropTypes.object.isRequired,
 }
 
-function Cart({ cartedItems }) {
-    // Currently using fake items,
-    // but we want to get the actual items from props later
+function Cart() {
+    const { products, cartedItems } = useContext(ShopContext);
 
-    const FAKE_ITEMS = [
-        {
-            title: "Armin x Gudetama Plush",
-            price: 4400,
-            quantity: 1,
-            thumbnail: "",
-        },
-        {
-            title: "Mikasa x Gudetama Plush",
-            price: 4400,
-            quantity: 2,
-            thumbnail: "",
-        }
-    ]
-    
+    function getCartedProducts(allProducts) {
+        // Add quantities to products
+        const products = cartedItems.map((cartItem) => {
+            const product = allProducts.find(
+                (product) => product.id === cartItem.id
+            );
+            const updatedProduct = {
+                ...product,
+                quantity: cartItem.quantity
+            }
+
+            return updatedProduct;
+        })
+
+        return products;
+    }
+
+    const itemsInCart = getCartedProducts(products);
+
     function calculateTotalPrice(items) {
         const subtotals = items.map((item) => {
             return (Math.round(
@@ -82,12 +112,12 @@ function Cart({ cartedItems }) {
                         <th>Price</th>
                         <th>Total</th>
                     </tr>
-                    {FAKE_ITEMS && FAKE_ITEMS.map((item) => 
+                    {itemsInCart && itemsInCart.map((item) => 
                         <CartItem item={item} key={item.id} />
                     )}
                     <tr>
                         <td colSpan={4}><b>Total</b></td>
-                        <td>${calculateTotalPrice(FAKE_ITEMS)}</td>
+                        <td>${calculateTotalPrice(itemsInCart)}</td>
                     </tr>
                 </tbody>
             </table>
@@ -97,7 +127,7 @@ function Cart({ cartedItems }) {
 }
 
 Cart.propTypes = {
-    cartedItems: PropTypes.array,
+    cartedItems: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default Cart;

@@ -141,26 +141,37 @@ function App() {
 
   function handleUpdateQty(productId, quantity) {
     const updatedQtyCart = cartedItems.map((item) => {
-      if (item.id === Number(productId) && Number(quantity) > 0) {
+      if (item.id === Number(productId) && quantity > 0) {
         return (
           {
             ...item,
             quantity: Number(quantity) > item.stock ? item.stock : Number(quantity)
           }
         )
-      } else if (item.id === Number(productId) && Number(quantity) === 0) {
+        // it's deleting our item immediately because Number(false) = 0
+        // which becomes true when we delete 
+      } else if (item.id === Number(productId) && quantity === 0) {
         return (
           {
             ...item,
             quantity: 0
           }
         );
+      } else if (item.id === Number(productId) && quantity === "") {
+        return (
+          {
+            ...item,
+            quantity: ""
+          }
+        )
       } else {
         return item;
       }
     });
 
-    const updatedCart = updatedQtyCart.filter((item) => item.quantity > 0);
+    const updatedCart = updatedQtyCart.filter(
+      (item) => item.quantity > 0 || item.quantity === ""
+    );
 
     setCartedItems(updatedCart);
   }

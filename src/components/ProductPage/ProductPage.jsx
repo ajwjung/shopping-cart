@@ -42,17 +42,21 @@ function ProductPage() {
     const { handleAddToCart } = useContext(ShopContext);
 
     function handleChangeQuantity(e) {
+        const inputValue = Number(e.target.value);
+
         if (e.target.className === "decrement") {
             (quantity - 1 > 0) && setQuantity(quantity - 1);
         } else if (e.target.className === "increment") {
             (quantity + 1 <= productData.stock) && setQuantity(quantity + 1);
-        }
-
-        // Highest accepted value is the max number in stock
-        if (e.target.value > 0) {
-            (e.target.value > productData.stock) 
-            ? setQuantity(productData.stock) 
-            : setQuantity(Number(e.target.value));
+        } else if (e.target.id === "quantity") {
+            // Highest accepted value is the max number in stock
+            if (inputValue > 0) {
+                (inputValue > productData.stock) 
+                ? setQuantity(productData.stock) 
+                : setQuantity(inputValue);
+            } else {
+                setQuantity(0);
+            }
         }
     }
 
@@ -77,12 +81,12 @@ function ProductPage() {
                             >-</button>
                             <label htmlFor="quantity">Quantity</label>
                             <input 
-                                type="number" 
+                                type="text" 
                                 id="quantity" 
                                 name="quantity" 
                                 value={quantity}
                                 onChange={handleChangeQuantity}
-                                min={1}
+                                pattern="[0-9]*"
                             />
                             <button 
                                 onClick={handleChangeQuantity}
