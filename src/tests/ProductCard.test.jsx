@@ -32,7 +32,7 @@ describe("ProductCard component", () => {
         );
 
         const card = screen.getByRole("link", { name: 
-            "Dummy Dummy Fake Brand 3.8 $39.99" 
+            "Dummy Dummy Fake Brand 3.8 rating $39.99" 
         });
         const brand = screen.getByText("Fake Brand");
         
@@ -75,7 +75,7 @@ describe("ProductCard component", () => {
         );
 
         const card = screen.getByRole("link", { name: 
-            "Dummy Dummy Fake Brand 3.8 $39.99" 
+            "Dummy Dummy Fake Brand 3.8 rating $39.99" 
         });
 
         expect(card).toHaveAttribute("href", "/product/31")

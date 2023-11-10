@@ -11,7 +11,7 @@ describe("Navbar component", () => {
             </BrowserRouter>
         );
 
-        const brandLogo = screen.getByRole("img", { name: "Brand Logo" });
+        const brandLogo = screen.getByRole("heading", { name: "GOOD HOME" });
 
         expect(brandLogo).toBeInTheDocument();
     });
@@ -30,14 +30,14 @@ describe("Navbar component", () => {
         expect(shopLink).toHaveAttribute("href", "/categories/all");
     });
 
-    it ("renders cart button linked to /cart page", () => {
+    it ("renders cart icon linked to /cart page", () => {
         render(
             <BrowserRouter>
                 <Navbar />
             </BrowserRouter>
         );
 
-        const cartBtn = screen.getByRole("link", { name: "Shopping Cart" });
+        const cartBtn = screen.getByRole("link", { name: "Cart" });
 
         expect(cartBtn).toHaveAttribute("href", "/cart");
     });

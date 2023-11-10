@@ -52,7 +52,7 @@ describe("ShopCategory component", () => {
         expect(lightingComponent).toHaveAttribute("href", "/categories/lighting");
     });
 
-    it("renders with an image and a shop button", () => {
+    it("renders with category text and a shop button", () => {
         render (
             <BrowserRouter>
                 <ShopCategory image="#" categoryName="lighting" />
@@ -61,9 +61,9 @@ describe("ShopCategory component", () => {
 
         const lightingComponent = screen.getByRole("link", { name: "Shop lighting" });
         const bgImage = screen.getByRole("img", { name: "Shop lighting" })
-        const shopButton = screen.getByRole("button", { name: "lighting" });
+        const categoryText = screen.getByText("lighting");
 
         expect(lightingComponent).toContainElement(bgImage);
-        expect(lightingComponent).toContainElement(shopButton);
+        expect(lightingComponent).toContainElement(categoryText);
     });
 });

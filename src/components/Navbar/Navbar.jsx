@@ -8,7 +8,9 @@ function Navbar() {
 
     return (
         <nav aria-label="Navbar">
-            <img src="#" alt="Brand Logo" />
+            <Link to="/">
+                <h1 className="brandName">GOOD HOME</h1>
+            </Link>
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/categories/all">Shop All</Link></li>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function ProductCard({ product }) {
     return (
-        product && <Link to={`/product/${product.id}`}>
+        product && <Link to={`/product/${product.id}`} className="productCard">
             <img
                 className="thumbnail"
                 src={product.thumbnail}
@@ -11,7 +11,7 @@ function ProductCard({ product }) {
             />
             <h2 className="productName">{product.title}</h2>
             <p className="productBrand">{product.brand}</p>
-            <p className="productRating">{product.rating}</p>
+            <p className="productRating">{product.rating} rating</p>
             <p className="productPrice">{`$${product.price}`}</p>
         </Link>
     )

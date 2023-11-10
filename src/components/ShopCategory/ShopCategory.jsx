@@ -19,7 +19,7 @@ function ShopCategory({ image, categoryName }) {
             aria-label={`Shop ${categoryName}`}
         >
             <img src={image} alt={`Shop ${categoryName}`} />
-            <button type="button">{categoryName}</button>
+            <p>{categoryName}</p>
         </Link>
     )
 }
