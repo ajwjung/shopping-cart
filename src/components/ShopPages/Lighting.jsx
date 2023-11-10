@@ -1,8 +1,12 @@
 import ProductCard from "../ProductCard/ProductCard";
-import { useLoaderData } from "react-router-dom";
+import { useContext } from "react";
+import { ShopContext } from "../App";
 
 function Lighting() {
-    const lightingData = useLoaderData()[0].products;
+    const { products } = useContext(ShopContext);
+    const lightingData = Array(...products).filter((item) => {
+        return item.category === "lighting";
+    });
 
     return (
             <div className="allProducts">

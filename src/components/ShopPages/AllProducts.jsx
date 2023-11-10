@@ -1,19 +1,15 @@
 import ProductCard from "../ProductCard/ProductCard";
-import { useLoaderData } from "react-router-dom";
+import { useContext } from "react";
+import { ShopContext } from "../App";
 
 function AllProducts() {
-    const [lighting, homeDecor, furniture] = useLoaderData();
-    const allProductData = [
-        ...lighting.products, 
-        ...homeDecor.products, 
-        ...furniture.products
-    ];
-
+    const { products } = useContext(ShopContext);
+    
     return (
             <div className="allProducts">
                 <h1 className="pageHeading">All Products</h1>
                 <div className="productsContainer" data-testid="products">
-                    {allProductData && allProductData.map(product => {
+                    {products && products.map(product => {
                         return <ProductCard 
                             product={product}
                             key={product.id} 

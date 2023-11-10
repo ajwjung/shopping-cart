@@ -33,7 +33,6 @@ function CartItem({ item }) {
                     name="quantity" 
                     value={item.quantity} 
                     onChange={(e) => {
-                        console.log(e.target.value);
                         const productName = e.target.closest("tr").querySelector("td > p").textContent;
                         const productId = getProductId(productName, products);
                         handleUpdateQty(productId, e.target.value)

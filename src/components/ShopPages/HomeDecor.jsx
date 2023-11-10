@@ -1,8 +1,12 @@
 import ProductCard from "../ProductCard/ProductCard";
-import { useLoaderData } from "react-router-dom";
+import { useContext } from "react";
+import { ShopContext } from "../App";
 
 function HomeDecor() {
-    const homeDecorData = useLoaderData()[1].products;
+    const { products } = useContext(ShopContext);
+    const homeDecorData = Array(...products).filter((item) => {
+        return item.category === "home-decoration";
+    });
 
     return (
             <div className="allProducts">

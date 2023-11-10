@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import loader from "../scripts/dataFetch";
 import Home from "./Home/Home.jsx";
 import ShopMain from "./ShopPages/ShopMain.jsx";
 import Cart from "./Cart/Cart";
@@ -24,10 +23,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <DefaultShop /> },
-      { path: "all", element: <AllProducts />, loader: (() => loader()) },
-      { path: "lighting", element: <Lighting />, loader: (() => loader())},
-      { path: "home-decor", element: <HomeDecor />, loader: (() => loader()) },
-      { path: "furniture", element: <Furniture />, loader: (() => loader()) },
+      { path: "all", element: <AllProducts /> },
+      { path: "lighting", element: <Lighting />},
+      { path: "home-decor", element: <HomeDecor /> },
+      { path: "furniture", element: <Furniture /> },
     ]
   },
   {
@@ -148,8 +147,6 @@ function App() {
             quantity: Number(quantity) > item.stock ? item.stock : Number(quantity)
           }
         )
-        // it's deleting our item immediately because Number(false) = 0
-        // which becomes true when we delete 
       } else if (item.id === Number(productId) && quantity === 0) {
         return (
           {
