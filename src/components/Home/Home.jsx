@@ -1,5 +1,5 @@
 import Navbar from "../Navbar/Navbar";
-import ShopCategory from "../ShopCategory/ShopCategory";
+import ShopCategory from "./ShopCategory";
 
 function Home() {
     return (

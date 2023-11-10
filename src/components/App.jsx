@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Home/Home.jsx";
 import ShopMain from "./ShopPages/ShopMain.jsx";
 import Cart from "./Cart/Cart";
-import ErrorPage from "./ErrorPage/ErrorPage.jsx"
+import ErrorPage from "./ShopPages/ErrorPage.jsx"
 import DefaultShop from "./ShopPages/DefaultShop";
 import Lighting from "./ShopPages/Lighting";
 import AllProducts from "./ShopPages/AllProducts";

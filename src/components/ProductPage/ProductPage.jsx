@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import Navbar from "../Navbar/Navbar";
-import ErrorPage from "../ErrorPage/ErrorPage";
+import ErrorPage from "../ShopPages/ErrorPage";
 import { ShopContext } from "../App";
 import RatingStars from "./RatingStars";
 
@@ -36,6 +36,7 @@ function useProductData(productId) {
     return { productData, error, loading };
 }
 
+// Creates an individual page for a product at /product/:id
 function ProductPage() {
     const { productId } = useParams();
     const { productData, error, loading } = useProductData(productId);

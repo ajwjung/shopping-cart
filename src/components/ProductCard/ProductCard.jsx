@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import RatingStars from "../ProductPage/RatingStars";
 
+// Creates a card for each item in the /categories/:category page
 function ProductCard({ product }) {
     return (
         product && <Link to={`/product/${product.id}`} className="productCard">

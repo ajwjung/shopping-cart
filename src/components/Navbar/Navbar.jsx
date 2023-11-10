@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../App";
-import CartButton from "../CartButton/CartButton";
+import CartButton from "./CartButton";
 
 function Navbar() {
     const { cartedItems } = useContext(ShopContext);
