@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiCartVariant } from "@mdi/js";
+import styles from "./Navbar.module.css";
 
 function CartButton({ cartedItems }) {
     const totalCarted = cartedItems && cartedItems.reduce((prev, currentObj) => {
@@ -9,12 +10,13 @@ function CartButton({ cartedItems }) {
         }, 0);
 
     return (
-        <Link to="/cart" className="linkToCart" >
-            <div className="cartWrapper">
-                <Icon path={mdiCartVariant} size={2} className="cartIcon"/>
-                <p>Cart</p>
+        <Link to="/cart" className={styles.linkToCart} >
+            <div className={styles.cartWrapper}>
+                <Icon path={mdiCartVariant} size={1.5} className={styles.cartIcon}/>
             </div>
-            <p>{totalCarted > 0 && totalCarted}</p>
+            {
+                (totalCarted > 0) && <p className={styles.badgeNumber}>{totalCarted > 0 && totalCarted}</p>
+            }
         </Link>
     )
 }

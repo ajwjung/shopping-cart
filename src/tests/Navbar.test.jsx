@@ -23,11 +23,16 @@ describe("Navbar component", () => {
             </BrowserRouter>
         );
 
-        const homeLink = screen.getByRole("link", { name: "Home" });
-        const shopLink = screen.getByRole("link", { name: "Shop All" });
+        const shopAllLink = screen.getByRole("link", { name: "Shop All" });
+        const lighting = screen.getByRole("link", { name: "Lighting" });
+        const homeDecor = screen.getByRole("link", { name: "Home Decor" });
+        const furniture = screen.getByRole("link", { name: "Furniture" });
 
-        expect(homeLink).toHaveAttribute("href", "/");
-        expect(shopLink).toHaveAttribute("href", "/categories/all");
+        expect(shopAllLink).toHaveAttribute("href", "/categories/all");
+        expect(lighting).toHaveAttribute("href", "/categories/lighting");
+        expect(homeDecor).toHaveAttribute("href", "/categories/home-decor");
+        expect(furniture).toHaveAttribute("href", "/categories/furniture");
+        
     });
 
     it ("renders cart icon linked to /cart page", () => {

@@ -1,11 +1,12 @@
 import Navbar from "../Navbar/Navbar";
 import ShopCategory from "./ShopCategory";
+import styles from "./Home.module.css";
 
 function Home() {
     return (
         <>
         <Navbar />
-        <main className="home-content">
+        <main className={styles.homeContent} >
             <ShopCategory 
                 categoryName="All" 
                 image="https://images.unsplash.com/photo-1449247709967-d4461a6a6103?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 

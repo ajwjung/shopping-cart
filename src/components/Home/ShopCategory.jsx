@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import styles from "./Home.module.css";
 
 function ShopCategory({ image, categoryName }) {
     function formatName(name) {
@@ -15,11 +16,11 @@ function ShopCategory({ image, categoryName }) {
     return (
         categoryName && <Link 
             to={`/categories/${formattedName}`} 
-            className="category-wrapper" 
+            className={styles.categoryWrapper}
             aria-label={`Shop ${categoryName}`}
         >
             <img src={image} alt={`Shop ${categoryName}`} />
-            <p>{categoryName}</p>
+            <p className={styles.categoryName}>{categoryName}</p>
         </Link>
     )
 }
