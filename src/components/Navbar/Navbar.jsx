@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ShopContext } from "../App";
 import CartButton from "./CartButton";
 import styles from "./Navbar.module.css";
+import NavDropdown from "./Dropdown";
 
 function Navbar() {
     const { cartedItems } = useContext(ShopContext);
@@ -13,12 +14,14 @@ function Navbar() {
                 <h1 className={styles.brandName}>GOOD HOME</h1>
             </Link>
             <ul className={styles.navLinks}>
-                <li><Link to="/categories/all" className={styles.link}>Shop All</Link></li>
-                <li><Link to="/categories/lighting" className={styles.link}>Lighting</Link></li>
-                <li><Link to="/categories/home-decor" className={styles.link}>Home Decor</Link></li>
-                <li><Link to="/categories/furniture" className={styles.link}>Furniture</Link></li>
+                <li className={styles.shopAll}>
+                    <Link to="/categories/all" className={styles.shopAllLink}>Shop All</Link>
+                </li>
+                <li className={styles.dropdown}>
+                    <NavDropdown />
+                </li>
             </ul>
-            <CartButton cartedItems={cartedItems} />
+                <CartButton cartedItems={cartedItems} />
         </nav>
     )
 }
