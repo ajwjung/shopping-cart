@@ -42,7 +42,7 @@ describe("Navbar component", () => {
             </BrowserRouter>
         );
 
-        const cartBtn = screen.getByRole("link", { name: "Cart" });
+        const cartBtn = screen.getByRole("link", { name: "" });
 
         expect(cartBtn).toHaveAttribute("href", "/cart");
     });
