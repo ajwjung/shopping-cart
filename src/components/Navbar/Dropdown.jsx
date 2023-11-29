@@ -9,12 +9,14 @@ function NavDropdown() {
         setIsVisible(!isVisible);
     }
 
+    const dropdownBtbUnderline = isVisible ? styles.dropdownUnderline : ""; 
+
     return (
         <>
             <button 
                 type="button" 
                 onClick={toggleVisibility}
-                className={styles.dropdownBtn}
+                className={`${styles.dropdownBtn} ${dropdownBtbUnderline}`}
             >
                 Shop by Category
             </button>

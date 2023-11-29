@@ -1,48 +1,75 @@
+:root {
+    --font-color: rgb(50, 50, 50);
+    --bg-color: rgb(224, 216, 210);
+    --brown: rgb(90, 71, 56);
+    --brown-svg: invert(25%) sepia(32%) saturate(420%) hue-rotate(344deg) brightness(100%) contrast(90%);
+    --badge-color: rgb(240, 78, 78);
+}
+
 * {
     margin: 0;
     box-sizing: border-box;
-    color: rgb(50, 50, 50);
+    color: var(--font-color);
+}
+
+nav,
+.navLinks,
+.shopAll {
+    display: flex;
+    align-items: center;
 }
 
 nav {
-    background: rgb(243, 243, 243);
+    background: var(--bg-color);
     height: min-content;
     max-width: 100vw;
     padding: 10px 20px;
 
-    display: flex;
-    align-items: center;
     position: fixed;
     top: 0;
     z-index: 15;
 }
 
-.brandName {
-    font-size: 1.5rem;
+/* .brandName, */
+.shopAllLink,
+.badgeNumber {
     text-align: center;
 }
 
+
+.brandName {
+    font-size: 1.5rem;
+}
+
+.brandName:hover,
+.brandName:focus {
+    color: var(--brown);
+}
+
+/* Styles the "Shop All" navlink */
 .navLinks {
-    display: flex;
-    align-items: center;
     padding: 0;
-    margin-left: 20px;
+    margin-left: 10px;
     list-style-type: none;
 }
 
 .shopAll {
     height: 86px;
-    display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .shopAllLink {
-    color: rgb(50, 50, 50);
+    color: var(--font-color);
     text-transform: uppercase;
-    text-align: center;
 }
 
+.shopAllLink:hover,
+.shopAllLink:focus {    
+    text-decoration: underline;
+    color: var(--font-color);
+}
+
+/* Styles the cart icon */
 .linkToCart {
     height: 100%;
     position: relative;
@@ -50,23 +77,49 @@ nav {
 }
 
 .cartWrapper {
+    position: absolute;
     top: 0;
     left: 0;
-    position: absolute;
+}
+
+.cartIcon:hover,
+.cartIcon:focus {
+    filter: var(--brown-svg);
 }
 
 .badgeNumber {
     width: 20px;
     height: 20px;
-    background: rgb(255, 30, 30);
+    background: var(--badge-color);
     border-radius: 30%;
     
     color: white;
-    text-align: center;
+    font-size: 0.9rem;
     font-weight: 600;
     line-height: 20px;
 
     position: absolute;
-    top: -15px;
-    left: 25px;
+    top: -12px;
+    left: 22px;
+}
+
+@media (min-width: 420px) {
+    .brandName {
+        margin-left: 10px;
+    }
+
+    .shopAllLink {
+        max-width: 60px;
+    }
+}
+
+@media (min-width: 500px) {
+    nav {
+        padding: 10px 40px;
+    }
+
+    .navLinks {
+        padding: 0 10px;
+        margin: 0;
+    }
 }
