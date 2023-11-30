@@ -88,8 +88,8 @@ nav {
 }
 
 .badgeNumber {
-    width: 20px;
-    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
     background: var(--badge-color);
     border-radius: 30%;
     
