@@ -27,7 +27,6 @@ body {
   margin: 0;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -52,10 +51,6 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-#root {
-  max-width: 400px;
 }
 
 @media (prefers-color-scheme: light) {

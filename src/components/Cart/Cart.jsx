@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ShopContext } from "../App";
 import Navbar from "../Navbar/Navbar";
+import styles from "./Cart.module.css";
 
 function CartItem({ item }) {
     const { products, handleUpdateQty } = useContext(ShopContext);
@@ -19,45 +21,60 @@ function CartItem({ item }) {
     }
 
     return (
-        <tr className="cartedItem">
-            <td>
-                <img src={item.thumbnail} alt={item.title} />
-            </td>
-            <td>
-                <p>{item.title}</p>
-            </td>
-            <td>
-                <input 
-                    type="text" 
-                    id="quantity" 
-                    name="quantity" 
-                    value={item.quantity} 
-                    onChange={(e) => {
-                        const productName = e.target.closest("tr").querySelector("td > p").textContent;
-                        const productId = getProductId(productName, products);
-                        handleUpdateQty(productId, e.target.value)
-                    }}
-                    pattern="[0-9]*"
-                />
-            </td>
-            <td>
-                <p>${item.price}</p>
-            </td>
-            <td>
-                <p>${calculateSubtotal(item.quantity, item.price)}</p>
-            </td>
-            <td>
-                <button 
-                    className="removeItem" 
-                    onClick={(e) => { 
-                        const productName = e.target.closest("tr").querySelector("td > p").textContent;
-                        const productId = getProductId(productName, products);
-                        handleUpdateQty(productId, 0);
-                    }} 
-                    type="button"
-                >X</button>
-            </td>
-        </tr>
+        <div className={styles.cartedItem}>
+            <div className={styles.productWrapper}>
+                <div className={styles.thumbnailWrapper}>
+                    <img
+                        className={styles.thumbnail}
+                        src={item.thumbnail}
+                        alt={item.title}
+                    />
+                </div>
+                <div className="productOverview">
+                    <p className={styles.productName}>
+                        {item.title}
+                    </p>
+                    <button
+                        className={styles.removeItem}
+                        onClick={(e) => {
+                            const productName = e.target.previousElementSibling.textContent;
+                            const productId = getProductId(productName, products);
+                            handleUpdateQty(productId, 0);
+                        }}
+                        type="button"
+                    >
+                        X Remove
+                    </button>
+                </div>
+            </div>
+            <div className={styles.productDetails}>
+                <div className={styles.qty}>
+                    <label  className={styles.bold} htmlFor="quantity">
+                        Qty
+                    </label>
+                    <input
+                        type="text"
+                        id="quantity"
+                        name="quantity"
+                        value={item.quantity}
+                        onChange={(e) => {
+                            const productName = e.target.parentNode.parentNode.previousElementSibling.querySelector(".productOverview").firstElementChild.textContent;
+                            const productId = getProductId(productName, products);
+                            handleUpdateQty(productId, e.target.value)
+                        }}
+                        pattern="[0-9]*"
+                    />
+                </div>
+                <div className={styles.price}>
+                    <p className={styles.bold}>Price</p>
+                    <p>${item.price}</p>
+                </div>
+                <div className={styles.productTotal}>
+                    <p className={styles.bold}>Total</p>
+                    <p>${calculateSubtotal(item.quantity, item.price)}</p>
+                </div>
+            </div>
+        </div>
     )
 }
 
@@ -102,25 +119,40 @@ function Cart() {
     return (
         <>
             <Navbar />
-            <h1>Shopping Cart</h1>
-            <table>
-                <tbody>
-                    <tr>
-                        <th colSpan={2}>Product</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                    </tr>
-                    {itemsInCart && itemsInCart.map((item) => 
-                        <CartItem item={item} key={item.id} />
-                    )}
-                    <tr>
-                        <td colSpan={4}><b>Total</b></td>
-                        <td>${calculateTotalPrice(itemsInCart)}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <button type="button">Checkout</button>
+            <div className={styles.cartContent}>
+                <h1 className={styles.heading}>Shopping Cart</h1>
+                <div className={styles.cart}>
+                    {itemsInCart.length !== 0 
+                        ? itemsInCart.map((item) => 
+                            <CartItem item={item} key={item.id} />
+                        )
+                        : <p className={styles.emptyCart}>Your cart is empty.</p>
+                    }
+                </div>
+                {itemsInCart.length > 0 && <div className="totalOverview">
+                    <h2>Total Overview</h2>
+                    <div className={styles.totalsGrid}>
+                        <p>Subtotal</p>
+                        <p className={styles.overviewPrice}>
+                            ${calculateTotalPrice(itemsInCart)}
+                        </p>
+                        <p>Estimated Shipping</p>
+                        <p className={styles.overviewPrice}>TBD</p>
+                        <p>Tax</p>
+                        <p className={styles.overviewPrice}>--</p>
+                        <p className={styles.bold}>Total</p>
+                        <p className={`${styles.bold} ${styles.overviewPrice}`}>
+                            ${calculateTotalPrice(itemsInCart)}
+                        </p>
+                    </div>
+                </div>}
+                {itemsInCart.length > 0 
+                    ? <button type="button">Checkout</button> 
+                    : <Link className={styles.continueShopping} to="/categories/all">
+                        Continue Shopping
+                    </Link>
+                }
+            </div>
         </>
     )
 }
