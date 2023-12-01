@@ -2,19 +2,34 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ShopContext } from "../App";
+import Icon from "@mdi/react";
+import { mdiTrashCanOutline } from "@mdi/js";
 import Navbar from "../Navbar/Navbar";
 import styles from "./Cart.module.css";
 
 function CartItem({ item }) {
     const { products, handleUpdateQty } = useContext(ShopContext);
 
+    function capitalizeName(name) {
+        return name.split(" ").map(word => {
+            return word.charAt(0).toUpperCase() + word.slice(1)
+        }).join(" ");
+    }
+
     function calculateSubtotal(qty, price) {
-        return Math.round((Number(qty) * Number(price)) * 100) / 100;
+        return (Math.round((Number(qty) * Number(price)) * 100) / 100).toFixed(2);
+    }
+
+    function calculateDiscountPrice(discount, qty, price) {
+        const originalPrice = calculateSubtotal(qty, price);
+        const discountDecimal = Number(discount) / 100;
+
+        return Math.round(originalPrice * (1 - discountDecimal)).toFixed(2);
     }
 
     function getProductId(productName, products) {
         const match = products.find((item) => {
-            return item.title === productName
+            return item.title.toLowerCase() === productName.toLowerCase()
         });
 
         return match.id;
@@ -22,58 +37,54 @@ function CartItem({ item }) {
 
     return (
         <div className={styles.cartedItem}>
-            <div className={styles.productWrapper}>
-                <div className={styles.thumbnailWrapper}>
-                    <img
-                        className={styles.thumbnail}
-                        src={item.thumbnail}
-                        alt={item.title}
-                    />
-                </div>
-                <div className="productOverview">
-                    <p className={styles.productName}>
-                        {item.title}
-                    </p>
-                    <button
-                        className={styles.removeItem}
-                        onClick={(e) => {
-                            const productName = e.target.previousElementSibling.textContent;
-                            const productId = getProductId(productName, products);
-                            handleUpdateQty(productId, 0);
-                        }}
-                        type="button"
-                    >
-                        X Remove
-                    </button>
-                </div>
+            <Link to={`/product/${item.id}`} className={styles.thumbnailWrapper}>
+                <img
+                    className={styles.thumbnail}
+                    src={item.thumbnail}
+                    alt={item.title}
+                />
+            </Link>
+            <Link to={`/product/${item.id}`} className={`${styles.bold} ${styles.productName}`}>
+                {capitalizeName(item.title)}
+            </Link>
+            <div className={styles.price}>
+                <p className={`${styles.bold} ${styles.discountedTotal}`}>
+                    {`$${calculateDiscountPrice(item.discountPercentage, item.quantity, item.price)}`}
+                </p>
+                <p className={`${styles.bold} ${styles.productTotal}`}>
+                    {`$${calculateSubtotal(item.quantity, item.price)}`}
+                </p>
             </div>
-            <div className={styles.productDetails}>
-                <div className={styles.qty}>
-                    <label  className={styles.bold} htmlFor="quantity">
-                        Qty
-                    </label>
-                    <input
-                        type="text"
-                        id="quantity"
-                        name="quantity"
-                        value={item.quantity}
-                        onChange={(e) => {
-                            const productName = e.target.parentNode.parentNode.previousElementSibling.querySelector(".productOverview").firstElementChild.textContent;
-                            const productId = getProductId(productName, products);
-                            handleUpdateQty(productId, e.target.value)
-                        }}
-                        pattern="[0-9]*"
-                    />
-                </div>
-                <div className={styles.price}>
-                    <p className={styles.bold}>Price</p>
-                    <p>${item.price}</p>
-                </div>
-                <div className={styles.productTotal}>
-                    <p className={styles.bold}>Total</p>
-                    <p>${calculateSubtotal(item.quantity, item.price)}</p>
-                </div>
+            <div className={styles.qty}>
+                <label htmlFor="quantity">
+                    Qty:
+                </label>
+                <input
+                    type="number"
+                    id="quantity"
+                    name="quantity"
+                    value={item.quantity}
+                    onChange={(e) => {
+                        const productName = e.target.parentNode.parentNode.querySelector(`.${styles.productName}`).textContent;
+                        const productId = getProductId(productName, products);
+                        handleUpdateQty(productId, e.target.value)
+                    }}
+                    min={1}
+                    max={item.stock}
+                />
             </div>
+            <button
+                className={styles.removeItem}
+                onClick={(e) => {
+                    const removeBtn = e.target.closest("button");
+                    const productName = removeBtn.parentNode.querySelector(`.${styles.productName}`).textContent;
+                    const productId = getProductId(productName, products);
+                    handleUpdateQty(productId, 0);
+                }}
+                type="button"
+            >
+                <Icon path={mdiTrashCanOutline} size={1} />
+            </button>
         </div>
     )
 }
@@ -106,14 +117,23 @@ function Cart() {
 
     function calculateTotalPrice(items) {
         const subtotals = items.map((item) => {
-            return (Math.round(
-                (Number(item.quantity) * Number(item.price)) * 100) / 100
-            );
+            if (item.discountPercentage > 0) {
+                const originalPrice = (Math.round(
+                    (Number(item.quantity) * Number(item.price)) * 100) / 100
+                );
+                const discountDecimal = Number(item.discountPercentage) / 100;
+
+                return Math.round(originalPrice * (1 - discountDecimal));
+            } else {
+                return (Math.round(
+                    (Number(item.quantity) * Number(item.price)) * 100) / 100
+                );
+            }
         });
         
         return subtotals.reduce((prev, current) => {
             return prev + current;
-        }, 0);
+        }, 0).toFixed(2);
     }
     
     return (
@@ -147,7 +167,9 @@ function Cart() {
                     </div>
                 </div>}
                 {itemsInCart.length > 0 
-                    ? <button type="button">Checkout</button> 
+                    ? <button className={styles.checkout} type="button">
+                        Checkout
+                        </button> 
                     : <Link className={styles.continueShopping} to="/categories/all">
                         Continue Shopping
                     </Link>
