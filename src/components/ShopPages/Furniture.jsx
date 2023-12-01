@@ -1,6 +1,7 @@
 import ProductCard from "../ProductCard/ProductCard";
 import { useContext } from "react";
 import { ShopContext } from "../App";
+import styles from "./ShopPage.module.css";
 
 function Furniture() {
     const { products } = useContext(ShopContext);
@@ -9,9 +10,9 @@ function Furniture() {
     });
 
     return (
-            <div className="allProducts">
-                <h1 className="pageHeading">Furniture</h1>
-                <div className="productsContainer" data-testid="products">
+            <div className={styles.productsContent}>
+                <h1 className={styles.heading}>Furniture</h1>
+                <div className={styles.allProductsWrapper} data-testid="products">
                     {furnitureData && furnitureData.map(product => {
                         return <ProductCard 
                             product={product}

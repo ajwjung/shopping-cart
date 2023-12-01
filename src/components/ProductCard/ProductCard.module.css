@@ -1,0 +1,103 @@
+:root {
+    --light-beige: rgb(235, 230, 225);
+    --cream: rgb(245, 239, 233);
+    --light-brown: rgb(94, 86, 78);
+    --red: rgb(187, 55, 55);
+    --small: 5px;
+    --medium: 10px;
+    --large: 20px;
+    --small-font: 0.85rem;
+    --medium-font: 0.9rem;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--font-color);
+}
+
+/* Styles each product card */
+.productCard {
+    width: 85vw;
+    padding: calc(var(--medium) + 5px);
+    background: var(--light-beige);
+    border-radius: 2px;
+
+    display: grid;
+    gap: var(--small);
+}
+
+.productCard:hover,
+.productCard:focus {
+    background: var(--cream);
+    border-radius: 5px;
+    scale: 1.02;
+}
+
+/* Styles thumbnails */
+.thumbnailWrapper,
+.thumbnail {
+    height: 250px;
+    width: 100%;
+}
+
+.thumbnail {
+    object-fit: cover;
+    object-position: top;
+    border-radius: 2px;
+}
+
+/* Styles product name */
+.productName {
+    font-size: 1.2rem;
+    margin-top: var(--small);
+}
+
+/* Styles ratings */
+.ratingWrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--small);
+}
+
+.brand,
+.productRating {
+    font-size: var(--small-font);
+}
+
+/* Styles prices */
+.price {
+    display: flex;
+    gap: var(--medium);
+}
+
+.discountPrice {
+    color: var(--red);
+}
+
+.originalPrice {
+    color: var(--light-brown);
+    text-decoration: line-through;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+@media (min-width: 420px) {
+    .productCard {
+        padding: var(--large);
+    }
+}
+
+@media (min-width: 500px) {
+    .thumbnailWrapper,
+    .thumbnail {
+        height: 300px;
+    }
+
+    .brand,
+    .productRating {
+        font-size: var(--medium-font);
+    }
+}

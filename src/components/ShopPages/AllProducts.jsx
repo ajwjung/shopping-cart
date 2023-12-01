@@ -1,14 +1,15 @@
 import ProductCard from "../ProductCard/ProductCard";
 import { useContext } from "react";
 import { ShopContext } from "../App";
+import styles from "./ShopPage.module.css";
 
 function AllProducts() {
     const { products } = useContext(ShopContext);
     
     return (
-            <div className="allProducts">
-                <h1 className="pageHeading">All Products</h1>
-                <div className="productsContainer" data-testid="products">
+            <div className={styles.productsContent}>
+                <h1 className={styles.heading}>All Products</h1>
+                <div className={styles.allProductsWrapper} data-testid="products">
                     {products && products.map(product => {
                         return <ProductCard 
                             product={product}

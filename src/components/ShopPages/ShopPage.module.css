@@ -1,0 +1,33 @@
+:root {
+    --small: 5px;
+    --medium: 10px;
+    --large: 20px;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--font-color);
+}
+
+.productsContent {
+    max-width: 100%;
+    margin: var(--margin);
+    margin-top: 100px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--medium);
+}
+
+.allProductsWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: center;
+    gap: var(--large);
+}
+
+.heading {
+    font-size: 2rem;
+    padding: var(--medium);
+}

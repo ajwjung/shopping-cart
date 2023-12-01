@@ -1,0 +1,9 @@
+/* Styles rating stars */
+.stars {
+    display: flex;
+}
+
+.stars > svg {
+    height: 15px;
+    width: 15px;
+}
