@@ -5,27 +5,12 @@ import { ShopContext } from "../App";
 import Icon from "@mdi/react";
 import { mdiTrashCanOutline } from "@mdi/js";
 import Navbar from "../Navbar/Navbar";
+import Price from "../../scripts/Price";
+import Display from "../../scripts/Display";
 import styles from "./Cart.module.css";
 
 function CartItem({ item }) {
     const { products, handleUpdateQty } = useContext(ShopContext);
-
-    function capitalizeName(name) {
-        return name.split(" ").map(word => {
-            return word.charAt(0).toUpperCase() + word.slice(1)
-        }).join(" ");
-    }
-
-    function calculateSubtotal(qty, price) {
-        return (Math.round((Number(qty) * Number(price)) * 100) / 100).toFixed(2);
-    }
-
-    function calculateDiscountPrice(discount, qty, price) {
-        const originalPrice = calculateSubtotal(qty, price);
-        const discountDecimal = Number(discount) / 100;
-
-        return Math.round(originalPrice * (1 - discountDecimal)).toFixed(2);
-    }
 
     function getProductId(productName, products) {
         const match = products.find((item) => {
@@ -45,14 +30,14 @@ function CartItem({ item }) {
                 />
             </Link>
             <Link to={`/product/${item.id}`} className={`${styles.bold} ${styles.productName}`}>
-                {capitalizeName(item.title)}
+                {Display.capitalizeName(item.title)}
             </Link>
             <div className={styles.price}>
                 <p className={`${styles.bold} ${styles.discountedTotal}`}>
-                    {`$${calculateDiscountPrice(item.discountPercentage, item.quantity, item.price)}`}
+                    {`$${Price.calculateDiscountPrice(item.discountPercentage, item.quantity, item.price)}`}
                 </p>
                 <p className={`${styles.bold} ${styles.productTotal}`}>
-                    {`$${calculateSubtotal(item.quantity, item.price)}`}
+                    {`$${Price.calculateSubtotal(item.quantity, item.price)}`}
                 </p>
             </div>
             <div className={styles.qty}>
@@ -114,27 +99,6 @@ function Cart() {
     }
 
     const itemsInCart = getCartedProducts(products);
-
-    function calculateTotalPrice(items) {
-        const subtotals = items.map((item) => {
-            if (item.discountPercentage > 0) {
-                const originalPrice = (Math.round(
-                    (Number(item.quantity) * Number(item.price)) * 100) / 100
-                );
-                const discountDecimal = Number(item.discountPercentage) / 100;
-
-                return Math.round(originalPrice * (1 - discountDecimal));
-            } else {
-                return (Math.round(
-                    (Number(item.quantity) * Number(item.price)) * 100) / 100
-                );
-            }
-        });
-        
-        return subtotals.reduce((prev, current) => {
-            return prev + current;
-        }, 0).toFixed(2);
-    }
     
     return (
         <>
@@ -154,7 +118,7 @@ function Cart() {
                     <div className={styles.totalsGrid}>
                         <p>Subtotal</p>
                         <p className={styles.overviewPrice}>
-                            ${calculateTotalPrice(itemsInCart)}
+                            ${Price.calculateTotalPrice(itemsInCart)}
                         </p>
                         <p>Estimated Shipping</p>
                         <p className={styles.overviewPrice}>TBD</p>
@@ -162,7 +126,7 @@ function Cart() {
                         <p className={styles.overviewPrice}>--</p>
                         <p className={styles.bold}>Total</p>
                         <p className={`${styles.bold} ${styles.overviewPrice}`}>
-                            ${calculateTotalPrice(itemsInCart)}
+                            ${Price.calculateTotalPrice(itemsInCart)}
                         </p>
                     </div>
                 </div>}
