@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import ErrorPage from "../ShopPages/ErrorPage";
+import ImageCarousel from "./ImageCarousel";
 import { ShopContext } from "../App";
 import RatingStars from "./RatingStars";
 import Price from "../../scripts/Price";
@@ -98,13 +99,16 @@ function ProductPage() {
                     <h2 className={styles.brand}>
                         {productData.brand}
                     </h2>
-                    <div className={styles.imgWrapper}>
+                    <div className={styles.carouselWrapper}>
+                        <ImageCarousel images={productData.images} />
+                    </div>
+                    {/* <div className={styles.imgWrapper}>
                         <img 
                             className={styles.productImage}
                             src={productData.thumbnail} 
                             alt={productData.title} 
                         />
-                    </div>
+                    </div> */}
                     <div className={styles.ratings}>
                         <RatingStars rating={productData.rating} /> 
                         <p className={styles.productRating}>
