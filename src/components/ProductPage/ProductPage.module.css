@@ -42,19 +42,10 @@
     font-weight: 500;
 }
 
-/* Styles product image */
-.imgWrapper,
-.productImage {
+/* Styles carousel wrapper */
+.carouselWrapper {
     grid-row: 3;
     grid-column: 1 / span 2;
-    height: clamp(300px, 40vh, 400px);
-    width: 100%;
-}
-
-.productImage {
-    object-fit: cover;
-    object-position: top;
-    border-radius: 2px;
 }
 
 /* Styles ratings div */
