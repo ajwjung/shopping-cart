@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Home/Home.jsx";
 import ShopMain from "./ShopPages/ShopMain.jsx";
-import Cart from "./Cart/Cart";
 import ErrorPage from "./ShopPages/ErrorPage.jsx"
 import DefaultShop from "./ShopPages/DefaultShop";
 import Lighting from "./ShopPages/Lighting";
@@ -9,6 +8,7 @@ import AllProducts from "./ShopPages/AllProducts";
 import HomeDecor from "./ShopPages/HomeDecor";
 import Furniture from "./ShopPages/Furniture";
 import ProductPage from "./ProductPage/ProductPage";
+import Cart from "./Cart/Cart";
 import { useState, useEffect, createContext } from "react";
 
 const router = createBrowserRouter([
