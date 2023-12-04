@@ -16,6 +16,7 @@
     color: var(--font-color);
 }
 
+/* Styles main content */
 .cartContent {
     max-width: 100%;
     margin: var(--margin);
@@ -37,6 +38,7 @@
     margin-top: -15px;
 }
 
+/* Styles each carted item */
 .cartedItem {
     background: var(--light-beige);
     margin: 20px 5px;
@@ -48,6 +50,7 @@
     gap: var(--medium);
 }
 
+/* Styles images */
 .thumbnailWrapper,
 .thumbnail {
     width: 110px;
@@ -65,6 +68,7 @@
     object-position: top;
 }
 
+/* Styles product name */
 .productName {
     grid-column: 2 / span 2;
     grid-row: 1;
@@ -73,6 +77,12 @@
     word-wrap: break-word;
 }
 
+.productName:hover,
+.productName:focus {
+    color: var(--font-color);
+}
+
+/* Styles product prices */
 .price {
     grid-column: 2;
     grid-row: 2;
@@ -90,12 +100,11 @@
     text-decoration: line-through;
 }
 
+/* Styles product quantities */
 .qty {
     grid-column: 2;
     grid-row: 3;
 
-    display: flex;
-    align-items: center;
     gap: var(--small);
 }
 
@@ -104,6 +113,7 @@ input {
     text-align: center;
 }
 
+/* Styles button to remove item from cart */
 .removeItem {
     grid-column: 3;
     grid-row: 3;
@@ -112,6 +122,11 @@ input {
     background: none;
     padding: 0;
     font-size: 0.9rem;
+}
+
+.removeItem:hover,
+.removeItem:focus {
+    filter: var(--brown-svg);
 }
 
 /* Styles elements displayed when cart is empty */
@@ -152,12 +167,25 @@ input {
     justify-self: end;
 }
 
+.checkout {
+    margin: var(--small) 0;
+    background: var(--beige);
+    text-transform: uppercase;
+}
+
+.checkout:hover,
+.checkout:focus {
+    background: var(--font-color);
+    color: var(--beige);
+}
+
 .bold {
     font-weight: 600;
 }
 
-.checkout {
-    margin: var(--small) 0;
+.flexCenter {
+    display: flex;
+    align-items: center;
 }
 
 @media (min-width: 420px) {

@@ -40,7 +40,7 @@ function CartItem({ item }) {
                     {`$${Price.calculateSubtotal(item.quantity, item.price)}`}
                 </p>
             </div>
-            <div className={styles.qty}>
+            <div className={`${styles.qty} ${styles.flexCenter}`}>
                 <label htmlFor="quantity">
                     Qty:
                 </label>
@@ -59,7 +59,7 @@ function CartItem({ item }) {
                 />
             </div>
             <button
-                className={styles.removeItem}
+                className={`${styles.removeItem} ${styles.flexCenter}`}
                 onClick={(e) => {
                     const removeBtn = e.target.closest("button");
                     const productName = removeBtn.parentNode.querySelector(`.${styles.productName}`).textContent;
@@ -131,7 +131,7 @@ function Cart() {
                     </div>
                 </div>}
                 {itemsInCart.length > 0 
-                    ? <button className={styles.checkout} type="button">
+                    ? <button className={`${styles.checkout} ${styles.bold}`} type="button">
                         Checkout
                         </button> 
                     : <Link className={styles.continueShopping} to="/categories/all">
