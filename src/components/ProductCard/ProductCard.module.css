@@ -18,7 +18,7 @@
 
 /* Styles each product card */
 .productCard {
-    width: 85vw;
+    width: 100%;
     padding: calc(var(--medium) + 5px);
     background: var(--light-beige);
     border-radius: 2px;
