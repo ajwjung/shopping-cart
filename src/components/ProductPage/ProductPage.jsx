@@ -102,13 +102,6 @@ function ProductPage() {
                     <div className={styles.carouselWrapper}>
                         <ImageCarousel images={productData.images} />
                     </div>
-                    {/* <div className={styles.imgWrapper}>
-                        <img 
-                            className={styles.productImage}
-                            src={productData.thumbnail} 
-                            alt={productData.title} 
-                        />
-                    </div> */}
                     <div className={styles.ratings}>
                         <RatingStars rating={productData.rating} /> 
                         <p className={styles.productRating}>
