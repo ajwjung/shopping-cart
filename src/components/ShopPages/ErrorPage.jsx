@@ -1,10 +1,15 @@
 import { useRouteError } from "react-router-dom";
+import styles from "./ErrorPage.module.css";
 
 function ErrorPage() {
     let error = useRouteError();
 
     return (
-        error && <p>A network error was encountered</p>
+        <div className={styles.errorMessage}
+        >
+            <p>A network error was encountered.</p>
+            <p>Please try again later.</p>
+        </div>
     )
 }
 
