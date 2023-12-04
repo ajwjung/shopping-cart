@@ -20,7 +20,9 @@ function ShopCategory({ image, categoryName }) {
             aria-label={`Shop ${categoryName}`}
         >
             <img src={image} alt={`Shop ${categoryName}`} />
-            <p className={styles.categoryName}>{categoryName}</p>
+            <p className={`${styles.categoryName} ${styles.bold}`}>
+                {categoryName}
+                </p>
         </Link>
     )
 }

@@ -12,7 +12,7 @@ function Home() {
             <div className={styles.homeContent}>
                 <div className={styles.bannerWrapper}>
                     <img className={styles.banner} src={imgLinks[4]} alt="" />
-                    <p className={styles.adText}>
+                    <p className={`${styles.adText} ${styles.bold}`}>
                         Shop your dream aesthetic at the right price.
                     </p>
                 </div>
