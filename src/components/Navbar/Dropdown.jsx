@@ -22,18 +22,21 @@ function NavDropdown() {
             </button>
             <div className={!isVisible ? styles.hidden : styles.dropdown}>
                 <Link
+                    onClick={toggleVisibility}
                     to="/categories/lighting"
                     className={styles.link}
                 >
                         Lighting
                 </Link>
                 <Link
+                    onClick={toggleVisibility}
                     to="/categories/home-decor"
                     className={styles.link}
                 >
                         Home Decor
                 </Link>
                 <Link
+                    onClick={toggleVisibility}
                     to="/categories/furniture"
                     className={styles.link}
                 >
