@@ -64,8 +64,24 @@
     filter: var(--filter-svg);
 }
 
+/* Styles for smaller devices */
 @media (min-width: 420px) {
     .carousel {
         padding: var(--medium);
+    }
+}
+
+@media (min-width: 500px) {
+    .imgWrapper,
+    .productImage {
+        height: clamp(300px, 45vh, 550px);
+    }
+}
+
+/* Styles for tablets */
+@media (min-width: 768px) {
+    .imgWrapper,
+    .productImage {
+        height: clamp(300px, 60vh, 600px);
     }
 }

@@ -12,8 +12,8 @@
 /* Styles main content */
 .productContent {
     max-width: 100%;
-    margin: var(--margin);
-    margin-top: 100px;
+    padding: var(--margin);
+    margin-top: 90px;
 }
 
 .productInfo {
@@ -144,6 +144,7 @@
     color: var(--beige);
 }
 
+/* Styles for smaller devices */
 @media (min-width: 420px) {
     .linksWrapper,
     .productInfo {
@@ -175,11 +176,6 @@
         font-size: var(--marge-font);
     }
 
-    .imgWrapper,
-    .productImage {
-        height: clamp(300px, 45vh, 400px);
-    }
-
     .imgWrapper {
         margin: var(--medium) 0;
     }
@@ -192,5 +188,73 @@
     .decreaseBtn,
     .increaseBtn {
         font-size: var(--marge-font);
+    }
+
+    .addToCartBtn {
+        margin-top: calc(var(--medium) + var(--small));
+    }
+}
+
+/* Styles for tablets */
+@media (min-width: 768px) {
+    .productContent {
+        padding: 2rem;
+        margin-top: 50px;
+    }
+
+    .productInfo {
+        margin: var(--medium) 0;
+    }
+}
+
+/* Styles for laptops */
+@media (min-width: 1024px) {
+    .linksWrapper,
+    .productInfo {
+        margin: 0 var(--large);
+    }
+
+    .productInfo {
+        grid-template-columns: 2fr 1fr;
+        column-gap: calc(var(--large) + var(--small));
+    }
+
+    .carouselWrapper {
+        grid-row: 1 / span 10;
+        grid-column: 1;
+    }
+
+    .productName,
+    .brand,
+    .ratings,
+    .price,
+    .qtyWrapper,
+    .addToCartBtn {
+        grid-column: 2;
+    }
+
+    .productName {
+        grid-row: 2;
+    }
+
+    .brand {
+        grid-row: 3;
+    }
+
+    .ratings {
+        grid-row: 4;
+        justify-content: flex-start;
+    }
+
+    .price {
+        grid-row: 5;
+    }
+
+    .qtyWrapper {
+        grid-row: 6;
+    }
+
+    .addToCartBtn {
+        grid-row: 7;
     }
 }
