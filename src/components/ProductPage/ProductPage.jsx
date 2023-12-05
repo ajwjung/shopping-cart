@@ -46,6 +46,7 @@ function ProductPage() {
     const { productId } = useParams();
     const { productData, error, loading } = useProductData(productId);
     const [quantity, setQuantity] = useState(1);
+    const [isClicked, setIsClicked] = useState(false);
     const { handleAddToCart } = useContext(ShopContext);
 
     function handleChangeQuantity(e) {
@@ -65,6 +66,14 @@ function ProductPage() {
                 setQuantity(0);
             }
         }
+    }
+
+    function updateClickStatus() {
+        setIsClicked(true);
+
+        setTimeout(() => {
+            setIsClicked(false);
+        }, 1500);
     }
 
     function formatCategoryName(category) {
@@ -150,10 +159,11 @@ function ProductPage() {
                     <button 
                         onClick={() => {
                             handleAddToCart(productId, quantity);
+                            updateClickStatus();
                         }}
                         className={`${styles.addToCartBtn} ${styles.bold}`}
                         type="button"
-                    >Add to Cart</button>
+                    >{isClicked ? "Added!" : "Add to Cart"}</button>
                 </div>
             </main>
         </>
