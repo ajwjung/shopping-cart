@@ -10,9 +10,10 @@
     color: var(--font-color);
 }
 
+/* Styles main content */
 .productsContent {
     max-width: 100%;
-    margin: var(--margin);
+    padding: var(--margin);
     margin-top: 100px;
 
     display: flex;
@@ -30,4 +31,12 @@
 .heading {
     font-size: 2rem;
     padding: var(--medium);
+}
+
+/* Styles for tablets */
+@media (min-width: 768px) {
+    .productsContent {
+        padding: 2rem;
+        margin-top: 50px;
+    }
 }
