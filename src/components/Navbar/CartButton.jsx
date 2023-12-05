@@ -13,10 +13,13 @@ function CartButton({ cartedItems }) {
         <Link to="/cart" className={styles.linkToCart} >
             <div className={styles.cartWrapper}>
                 <Icon path={mdiCartVariant} size={1.5} className={styles.cartIcon}/>
+                {
+                    (totalCarted > 0) && 
+                    <p className={`${styles.badgeNumber} ${styles.bold}`}>
+                        {totalCarted > 0 && totalCarted}
+                    </p>
+                }
             </div>
-            {
-                (totalCarted > 0) && <p className={styles.badgeNumber}>{totalCarted > 0 && totalCarted}</p>
-            }
         </Link>
     )
 }

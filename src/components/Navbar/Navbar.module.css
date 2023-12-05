@@ -13,9 +13,8 @@
 }
 
 nav,
-.navLinks,
-.shopAll {
-    display: flex;
+.navLinks {
+    display: grid;
     align-items: center;
 }
 
@@ -24,8 +23,10 @@ nav {
     height: min-content;
     width: 100%;
     max-width: 100vw;
-    padding: 10px 20px;
+    padding: var(--padding-small) var(--padding-medium);
+    box-shadow: 2px 2px 2px var(--beige);
 
+    grid-template-columns: 1fr 3fr 0.5fr;
     position: fixed;
     top: 0;
     z-index: 15;
@@ -37,9 +38,9 @@ nav {
     text-align: center;
 }
 
-
 .brandName {
     font-size: 1.5rem;
+    padding: var(--small);
 }
 
 .brandName:hover,
@@ -49,14 +50,18 @@ nav {
 
 /* Styles the "Shop All" navlink */
 .navLinks {
-    padding: 0;
-    margin-left: 10px;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--padding-small);
+
+    padding: 0 var(--padding-small);
+    margin-left: var(--padding-small);
     list-style-type: none;
 }
 
 .shopAll {
-    height: 86px;
-    justify-content: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .shopAllLink {
@@ -71,16 +76,12 @@ nav {
 }
 
 /* Styles the cart icon */
-.linkToCart {
-    height: 100%;
-    position: relative;
-    padding: 20px;
-}
-
 .cartWrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cartIcon:hover,
@@ -95,18 +96,21 @@ nav {
     border-radius: 30%;
     
     color: white;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: var(--medium-font);
     line-height: 20px;
 
     position: absolute;
-    top: -12px;
-    left: 22px;
+    top: -30%;
+    left: 50%;
+}
+
+.bold {
+    font-weight: 600;
 }
 
 @media (min-width: 420px) {
     .brandName {
-        margin-left: 10px;
+        margin-left: var(--padding-small);
     }
 
     .shopAllLink {
@@ -116,11 +120,26 @@ nav {
 
 @media (min-width: 500px) {
     nav {
-        padding: 10px 40px;
+        grid-template-columns: 1fr 2.5fr 0.5fr;
+        padding: var(--padding-small);
     }
 
-    .navLinks {
-        padding: 0 10px;
-        margin: 0;
+    .brandName {
+        font-size: 1.6rem;
+    }
+
+    .shopAll {
+        display: block;
+        text-align: center;
+    }
+
+    .shopAllLink {
+        max-width: none;
+    }
+}
+
+@media (min-width: 700px) {
+    nav {
+        grid-template-columns: 1fr 2fr 0.5fr;
     }
 }
