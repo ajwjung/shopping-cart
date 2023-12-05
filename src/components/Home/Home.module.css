@@ -7,7 +7,7 @@
 .homeContent {
     max-width: 100%;
     padding: var(--margin);
-    margin-top: 100px;
+    margin-top: 70px;
     overflow: hidden;
 
     display: flex;
@@ -65,7 +65,7 @@
 }
 
 .categoryName {
-    color: rgb(39, 39, 39);
+    color: var(--font-color);
     line-height: 150px;
     text-align: center;
     text-transform: uppercase;
@@ -75,4 +75,65 @@
 
 .bold {
     font-weight: 600;
+}
+
+/* Styles for smaller devices */
+@media (min-width: 500px) {
+    .homeContent {
+        margin-top: 65px;
+        padding: 0 var(--large);
+    }
+    
+    .bannerWrapper,
+    .banner {
+        height: 300px;
+    }
+
+    .adText {
+        padding: var(--large);
+    }
+}
+
+/* Styles for tablets */
+@media (min-width: 768px) {
+    .bannerWrapper,
+    .banner {
+        height: clamp(350px, 40vh, 500px);
+    }
+
+    .categories {
+       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+       gap: 30px;
+       padding: 20px;
+    }
+
+    .categoryWrapper {
+        height: 200px;
+    }
+
+    .categoryName {
+        line-height: 200px;
+    }
+}
+
+/* Styles for laptops */
+@media (min-width: 1024px) {
+    .homeContent {
+        padding: 0 80px;
+        margin-top: 65px;
+    }
+
+    .categories {
+       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+       gap: 35px;
+       padding: 20px;
+    }
+
+    .categoryWrapper {
+        height: 300px;
+    }
+
+    .categoryName {
+        line-height: 300px;
+    }
 }
