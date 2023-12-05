@@ -99,21 +99,22 @@ function Cart() {
     }
 
     const itemsInCart = getCartedProducts(products);
+    const cartStyle = itemsInCart.length > 0 ? styles.cart : styles.emptyCart;
     
     return (
         <>
             <Navbar />
             <div className={styles.cartContent}>
                 <h1 className={styles.heading}>Shopping Cart</h1>
-                <div className={styles.cart}>
-                    {itemsInCart.length !== 0 
+                <div className={cartStyle}>
+                    {itemsInCart.length > 0 
                         ? itemsInCart.map((item) => 
                             <CartItem item={item} key={item.id} />
                         )
-                        : <p className={styles.emptyCart}>Your cart is empty.</p>
+                        : <p className={styles.emptyCartMsg}>Your cart is empty.</p>
                     }
                 </div>
-                {itemsInCart.length > 0 && <div className="totalOverview">
+                {itemsInCart.length > 0 && <div className={styles.totalOverview}>
                     <h2>Total Overview</h2>
                     <div className={styles.totalsGrid}>
                         <p>Subtotal</p>
@@ -134,7 +135,10 @@ function Cart() {
                     ? <button className={`${styles.checkout} ${styles.bold}`} type="button">
                         Checkout
                         </button> 
-                    : <Link className={styles.continueShopping} to="/categories/all">
+                    : <Link 
+                        className={`${styles.continueShopping} ${styles.bold}`} 
+                        to="/categories/all"
+                    >
                         Continue Shopping
                     </Link>
                 }

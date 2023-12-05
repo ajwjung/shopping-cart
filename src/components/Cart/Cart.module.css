@@ -19,8 +19,8 @@
 /* Styles main content */
 .cartContent {
     max-width: 100%;
-    margin: var(--margin);
-    margin-top: 100px;
+    padding: var(--margin);
+    margin-top: 90px;
 
     display: flex;
     flex-direction: column;
@@ -130,26 +130,28 @@ input {
 }
 
 /* Styles elements displayed when cart is empty */
-.emptyCart,
+.emptyCartMsg,
 .continueShopping {
     text-align: center;
 }
 
-.emptyCart {
+.emptyCartMsg {
     padding: 2rem;
 }
 
 .continueShopping {
-    background: var(--btn-color);
-    color: var(--font-color);
+    background: var(--beige);
     padding: calc(var(--medium) + 2px);
     border-radius: 5px;
+
+    color: var(--font-color);
+    text-transform: uppercase;
 }
 
 .continueShopping:hover,
 .continueShopping:focus {
-    background: var(--beige);
-    color: var(--font-color);
+    background: var(--font-color);
+    color: var(--beige);
 }
 
 /* Styles the Total Overview */
@@ -188,16 +190,8 @@ input {
     align-items: center;
 }
 
-@media (min-width: 420px) {
-    .heading {
-        margin: 0.5rem 0;
-    }
-
-    .cartContent {
-        margin: 1.5rem;
-        margin-top: 100px;
-    }
-    
+/* Styles for smaller devices */
+@media (min-width: 420px) {    
     .productWrapper {
         gap: calc(var(--medium) * 2);
     }
@@ -212,5 +206,60 @@ input {
     .thumbnail {
         width: 125px;
         height: 125px;
+    }
+}
+
+/* Styles for tablets */
+@media (min-width: 768px) {
+    .cartContent {
+        padding: 2rem;
+        margin-top: 50px;
+    }
+}
+
+/* Styles for laptops */
+@media (min-width: 1024px) {
+    .cartContent {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: var(--large);
+    }
+
+    .heading {
+        grid-row: 1;
+        grid-column: 1 / span 2;
+    }
+
+    /* Styles for empty cart */
+    .emptyCart,
+    .continueShopping {
+        grid-column: 1 / span 2;
+    }
+
+    .emptyCart {
+        grid-row: 2;
+    }
+
+    .continueShopping {
+        grid-row: 3;
+
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    /* Styles for populated cart */
+    .cart {
+        grid-row: 2 / span 3;
+        grid-column: 1;
+    }
+
+    .totalOverview {
+        grid-row: 2;
+        grid-column: 2;
+    }
+
+    .checkout {
+        grid-row: 3;
+        grid-column: 2;
     }
 }
