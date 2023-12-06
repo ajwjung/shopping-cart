@@ -3,7 +3,7 @@ import { ShopContext } from "../App";
 import PropTypes from "prop-types";
 import styles from "./ProductPage.module.css";
 
-function QuantityBtns({ wrapperClassName, product, cartBtnClassName }) {
+function QuantityBtns({ product, wrapperClassName, qtyLabelClassName, cartBtnClassName }) {
     const [quantity, setQuantity] = useState(1);
     const [isClicked, setIsClicked] = useState(false);
     const { handleAddToCart } = useContext(ShopContext);
@@ -39,7 +39,7 @@ function QuantityBtns({ wrapperClassName, product, cartBtnClassName }) {
         <>
             <div className={wrapperClassName}>
                 <label 
-                    className={styles.qtyLabel} 
+                    className={qtyLabelClassName} 
                     htmlFor="quantity">
                         Quantity
                 </label>
@@ -80,10 +80,10 @@ function QuantityBtns({ wrapperClassName, product, cartBtnClassName }) {
 QuantityBtns.defaultProps = {
     wrapperClassName: styles.qtyWrapper,
     cartBtnClassName: styles.addToCartBtn,
+    qtyLabelClassName: styles.qtyLabel,
 }
 
 QuantityBtns.propTypes = {
-    wrapperClassName: PropTypes.string.isRequired,
     product: PropTypes.shape({
         brand: PropTypes.string,
         category: PropTypes.string,
@@ -97,6 +97,8 @@ QuantityBtns.propTypes = {
         thumbnail: PropTypes.string,
         title: PropTypes.string,
     }).isRequired,
+    wrapperClassName: PropTypes.string.isRequired,
+    qtyLabelClassName: PropTypes.string.isRequired,
     cartBtnClassName: PropTypes.string.isRequired,
 }
 

@@ -61,8 +61,9 @@ function QuickView({ updateClickedStatus, product, productPrice }) {
                     <Icon className={styles.closeBtn} path={mdiClose} />
                 </div>
                 <QuantityBtns 
-                    wrapperClassName={styles.popupQtyWrapper} 
                     product={product} 
+                    wrapperClassName={styles.popupQtyWrapper}
+                    qtyLabelClassName={styles.qtyLabel}
                     cartBtnClassName={styles.popupAddToCartBtn}
                 />
                 <Link className={styles.goToProduct} to={`/product/${product.id}`}>
