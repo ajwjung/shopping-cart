@@ -13,7 +13,13 @@ const Display = (() => {
         }).join(" ");
     }
 
-    return { homeImages, capitalizeName };
+    function formatDescription(description) {
+        const lowercaseDescription = description.toLowerCase();
+
+        return lowercaseDescription.charAt(0).toUpperCase() + lowercaseDescription.slice(1);
+    }
+
+    return { homeImages, capitalizeName, formatDescription };
 })();
 
 export default Display;

@@ -24,6 +24,7 @@
     border-radius: 2px;
 
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--small);
 }
 
@@ -37,6 +38,9 @@
 /* Styles thumbnails */
 .thumbnailWrapper,
 .thumbnail {
+    grid-row: 1;
+    grid-column: 1 / span 2;
+
     height: 250px;
     width: 100%;
 }
@@ -48,25 +52,23 @@
 }
 
 /* Styles product name */
+.nameWrapper {
+    grid-row: 2;
+    grid-column: 1 / span 2;
+
+    display: flex;
+}
+
 .productName {
     font-size: 1.2rem;
     margin-top: var(--small);
 }
 
-/* Styles ratings */
-.ratingWrapper {
-    display: flex;
-    align-items: center;
-    gap: var(--small);
-}
-
-.brand,
-.productRating {
-    font-size: var(--small-font);
-}
-
 /* Styles prices */
 .price {
+    grid-row: 3;
+    grid-column: 1;
+
     display: flex;
     gap: var(--medium);
 }
@@ -80,10 +82,22 @@
     text-decoration: line-through;
 }
 
+/* Styles quick view button */
+.quickviewBtn {
+    grid-row: 4;
+    grid-column: 1;
+
+    background: none;
+    padding: 0;
+    text-align: start;
+    text-decoration: underline;
+}
+
 .bold {
     font-weight: 600;
 }
 
+/* Styles for smaller devices */
 @media (min-width: 420px) {
     .productCard {
         padding: var(--large);
@@ -94,10 +108,5 @@
     .thumbnailWrapper,
     .thumbnail {
         height: 300px;
-    }
-
-    .brand,
-    .productRating {
-        font-size: var(--medium-font);
     }
 }

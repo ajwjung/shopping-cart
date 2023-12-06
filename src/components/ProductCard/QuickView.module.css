@@ -1,0 +1,208 @@
+/* Styles for background overlay */
+.overlay {
+    background: rgba(138, 130, 121, 0.7);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+/* Styles for quick view popup */
+.quickviewPopup {
+    background: var(--bg-color);
+    height: 60vh;
+    width: 85vw;
+    padding: var(--padding-medium);
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px var(--brown);
+    overflow-y: scroll;
+
+    position: fixed;
+    z-index: 10;
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    gap: var(--padding-small);
+}
+
+/* Styles for 'Close Popup' button */
+.closePopup,
+.closeBtn {
+    height: 30px;
+    width: 30px;
+}
+
+.closePopup {
+    grid-row: 1;
+    grid-column: 2;
+
+    justify-self: end;
+}
+
+/* Styles for product name */
+.popupName {
+    grid-row: 1;
+    grid-column: 1;
+
+    font-size: 1.2rem;
+    margin-top: var(--small);
+}
+
+/* Styles for prices */
+.popupPrice {
+    grid-row: 2;
+    grid-column: 1;
+
+    display: flex;
+    gap: var(--medium);
+}
+
+.discountPrice {
+    color: var(--red);
+}
+
+.originalPrice {
+    color: var(--light-brown);
+    text-decoration: line-through;
+}
+
+/* Styles for product description */
+.popupDescription {
+    grid-row: 3;
+    grid-column: 1 / span 2;
+}
+
+/* Styles for image carousel */
+.popupCarousel {
+    grid-row: 4;
+    grid-column: 1 / span 2;
+
+    background: var(--light-beige);
+    display: grid;
+    justify-items: center;
+    padding: var(--padding-small) 0;
+    row-gap: var(--padding-small);
+}
+
+.popupImgWrapper,
+.popupImage {
+    height: clamp(150px, 25vh, 250px);
+}
+
+.popupBrand {
+    grid-row: 5;
+    grid-column: 1;
+}
+
+/* Styles product rating stars */
+.ratingWrapper {
+    grid-row: 5;
+    grid-column: 2;
+
+    display: flex;
+    align-items: center;
+    gap: var(--small);
+}
+
+.productRating {
+    font-size: var(--small-font);
+}
+
+/* Styles for quantity buttons */
+.popupQtyWrapper {
+    grid-row: 6;
+    grid-column: 1 / span 2;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.qtyBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--padding-small);
+}
+
+.quantity {
+    height: 40px;
+}
+
+.decreaseBtn,
+.increaseBtn,
+.popupAddToCartBtn {
+    background: var(--beige);
+}
+
+/* Styles for 'Add to Cart' button */
+.popupAddToCartBtn {
+    grid-row: 7;
+    grid-column: 1 / span 2;
+    margin: var(--padding-small) 0;
+}
+
+.popupAddToCartBtn:hover,
+.popupAddToCartBtn:focus {
+    background: var(--font-color);
+    color: var(--beige);
+}
+
+/* Styles for 'View full product details' button */
+.goToProduct {
+    grid-row: 8;
+    grid-column: 1 / span 2;
+
+    justify-self: center;
+    color: var(--font-color);
+    text-decoration: underline;
+
+    display: flex;
+    align-items: center;
+}
+
+.rightArrow {
+    height: 30px;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+/* Styles for smaller devices */
+@media (min-width: 420px) {
+    .quickviewPopup {
+        padding: calc(var(--padding-medium) + var(--padding-small));
+    }
+}
+
+@media (min-width: 500px) {
+    .popupImgWrapper,
+    .popupImage {
+        height: clamp(250px, 40vh, 400px);
+    }
+}
+
+/* Styles for tablets */
+@media (min-width: 768px) {
+    .quickviewPopup {
+        height: 70vh;
+        width: 70vw;
+    }
+
+    .popupImgWrapper,
+    .popupImage {
+        height: clamp(250px, 50vh, 400px);
+    }
+}
+
+/* Styles for laptops */
+@media (min-width: 1024px) {
+    .quickviewPopup {
+        width: 60vw;
+        padding: calc(var(--padding-medium) * 2);
+    }
+}

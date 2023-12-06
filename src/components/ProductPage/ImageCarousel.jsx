@@ -4,7 +4,7 @@ import Icon from '@mdi/react';
 import { mdiChevronLeft, mdiChevronRight, mdiCircle, mdiCircleOutline } from '@mdi/js';
 import styles from "./ImageCarousel.module.css";
 
-function ImageCarousel({ images }) {
+function ImageCarousel({ images, wrapperClassName, imgWrapperClassName, imgClassName }) {
     const [displayedImageId, setDisplayedImageId] = useState(0);
 
     function handleChangeImage(arrowBtn) {
@@ -21,7 +21,7 @@ function ImageCarousel({ images }) {
 
     return (
         <>
-            <div className={styles.carousel}>
+            <div className={wrapperClassName}>
                 <button 
                     className={styles.leftArrow}
                     onClick={(e) => handleChangeImage(
@@ -34,9 +34,9 @@ function ImageCarousel({ images }) {
                         path={mdiChevronLeft} 
                     />
                 </button>
-                <div className={styles.imgWrapper}>
+                <div className={imgWrapperClassName}>
                     <img 
-                        className={styles.productImage} 
+                        className={imgClassName} 
                         src={`${images[displayedImageId]}`} 
                         alt="" 
                     />
@@ -79,8 +79,17 @@ function ImageCarousel({ images }) {
     )
 }
 
+ImageCarousel.defaultProps = {
+    wrapperClassName: styles.carousel,
+    imgWrapperClassName: styles.imgWrapper,
+    imgClassName: styles.productImage,
+}
+
 ImageCarousel.propTypes = {
-    images: PropTypes.arrayOf(PropTypes.string).isRequired
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
+    wrapperClassName: PropTypes.string.isRequired,
+    imgWrapperClassName: PropTypes.string.isRequired,
+    imgClassName: PropTypes.string.isRequired,
 }
 
 export default ImageCarousel;

@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import ErrorPage from "../ShopPages/ErrorPage";
 import ImageCarousel from "./ImageCarousel";
-import { ShopContext } from "../App";
 import RatingStars from "./RatingStars";
+import QuantityBtns from "./QuantityBtns";
 import Price from "../../scripts/Price";
 import Display from "../../scripts/Display";
 import styles from "./ProductPage.module.css";
@@ -45,36 +45,6 @@ function useProductData(productId) {
 function ProductPage() {
     const { productId } = useParams();
     const { productData, error, loading } = useProductData(productId);
-    const [quantity, setQuantity] = useState(1);
-    const [isClicked, setIsClicked] = useState(false);
-    const { handleAddToCart } = useContext(ShopContext);
-
-    function handleChangeQuantity(e) {
-        const inputValue = Number(e.target.value);
-
-        if (e.target.className === `${styles.decreaseBtn}`) {
-            (quantity - 1 > 0) && setQuantity(quantity - 1);
-        } else if (e.target.className === `${styles.increaseBtn}`) {
-            (quantity + 1 <= productData.stock) && setQuantity(quantity + 1);
-        } else if (e.target.id === "quantity") {
-            // Highest accepted value is the max number in stock
-            if (inputValue > 0) {
-                (inputValue > productData.stock) 
-                ? setQuantity(productData.stock) 
-                : setQuantity(inputValue);
-            } else {
-                setQuantity(0);
-            }
-        }
-    }
-
-    function updateClickStatus() {
-        setIsClicked(true);
-
-        setTimeout(() => {
-            setIsClicked(false);
-        }, 1500);
-    }
 
     function formatCategoryName(category) {
         if (category === "home-decoration") {
@@ -128,42 +98,7 @@ function ProductPage() {
                             {`$${productData.price.toFixed(2)}`}
                         </p>
                     </div>
-                    <div className={styles.qtyWrapper}>
-                        <label 
-                            className={styles.qtyLabel} 
-                            htmlFor="quantity">
-                                Quantity
-                        </label>
-                        <div className={styles.qtyBtns}>
-                            <button
-                                className={styles.decreaseBtn}
-                                onClick={handleChangeQuantity}
-                                type="button"
-                            >-</button>
-                            <input
-                                type="text"
-                                className={styles.quantity}
-                                id="quantity"
-                                name="quantity"
-                                value={quantity}
-                                onChange={handleChangeQuantity}
-                                pattern="[0-9]*"
-                            />
-                            <button
-                                onClick={handleChangeQuantity}
-                                className={styles.increaseBtn}
-                                type="button"
-                            >+</button>
-                        </div>
-                    </div>
-                    <button 
-                        onClick={() => {
-                            handleAddToCart(productId, quantity);
-                            updateClickStatus();
-                        }}
-                        className={`${styles.addToCartBtn} ${styles.bold}`}
-                        type="button"
-                    >{isClicked ? "Added!" : "Add to Cart"}</button>
+                    <QuantityBtns product={productData} />
                 </div>
             </main>
         </>
