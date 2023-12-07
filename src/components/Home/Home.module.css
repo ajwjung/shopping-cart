@@ -1,13 +1,17 @@
 * {
     margin: 0;
     box-sizing: border-box;
+    color: var(--font-color);
 }
 
 /* Styles main content */
 .homeContent {
+    height: calc(100vh - 80px);
     max-width: 100%;
+    background: url("https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") no-repeat 50% fixed;
+    background-size: cover;
     padding: var(--margin);
-    margin-top: 70px;
+    margin-top: 80px;
     overflow: hidden;
 
     display: flex;
@@ -15,62 +19,26 @@
     justify-content: center;
 }
 
-/* Styles banner */
-.bannerWrapper,
-.banner {
-    height: 225px;
-    width: 110%;
-    margin-left: -5%;
+.introWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--medium);
 }
 
-.banner {
-    object-fit: cover;
-    object-position: 50% 60%;
+/* Styles 'Shop Now' button */
+.shopNowBtn {
+    width: fit-content;
+    background: var(--font-color);
+    padding: var(--padding-small);
+    border-radius: 10px;
+    color: var(--light-beige);
+    font-weight: 600;
 }
 
-.adText {
-    padding: var(--medium);
-    text-align: center;
-    font-style: italic;
-    font-size: 1.2rem;
-}
-
-/* Styles category boxes */
-.categories {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    justify-items: center;
-    margin-top: 85px;
-    gap: 1rem;
-}
-
-.categoryWrapper {
-    width: 100%;
-    height: 170px;
-    padding: 0;
-    position: relative;
-}
-
-.categoryWrapper:hover {
-    opacity: 0.8;
-}
-
-.categoryWrapper > img,
-.categoryName {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.categoryName {
+.shopNowBtn:hover,
+.shopNowBtn:focus {
+    background: var(--beige);
     color: var(--font-color);
-    line-height: 150px;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    z-index: 10;
 }
 
 .bold {
@@ -80,60 +48,39 @@
 /* Styles for smaller devices */
 @media (min-width: 500px) {
     .homeContent {
+        height: calc(100vh - 65px);
         margin-top: 65px;
-        padding: 0 var(--large);
+        padding: 0 calc(var(--large) * 2);
     }
     
-    .bannerWrapper,
-    .banner {
-        height: 300px;
-    }
-
-    .adText {
-        padding: var(--large);
+    .intro {
+        font-size: 1.2rem;
     }
 }
 
 /* Styles for tablets */
 @media (min-width: 768px) {
-    .bannerWrapper,
-    .banner {
-        height: clamp(350px, 40vh, 500px);
-    }
-
-    .categories {
-       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-       gap: 30px;
-       padding: 20px;
-    }
-
-    .categoryWrapper {
-        height: 200px;
-    }
-
-    .categoryName {
-        line-height: 200px;
+    .introWrapper {
+        align-items: center;
     }
 }
 
 /* Styles for laptops */
 @media (min-width: 1024px) {
     .homeContent {
-        padding: 0 80px;
-        margin-top: 65px;
+        padding: 0 100px;
     }
 
-    .categories {
-       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-       gap: 35px;
-       padding: 20px;
+    .introWrapper {
+        gap: var(--large);
     }
 
-    .categoryWrapper {
-        height: 300px;
+    .intro {
+        font-size: 1.5rem;
     }
 
-    .categoryName {
-        line-height: 300px;
+    .shopNowBtn {
+        padding: var(--padding-small) var(--padding-medium);
+        font-size: 1.1rem;
     }
 }
