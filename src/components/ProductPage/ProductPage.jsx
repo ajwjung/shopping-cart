@@ -98,6 +98,9 @@ function ProductPage() {
                             {`$${productData.price.toFixed(2)}`}
                         </p>
                     </div>
+                    <p className={styles.description}>
+                        {Display.formatDescription(productData.description)}
+                    </p>
                     <QuantityBtns product={productData} />
                 </div>
             </main>

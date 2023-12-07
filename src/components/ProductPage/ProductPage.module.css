@@ -100,9 +100,17 @@
     font-weight: 600;
 }
 
+/* Styles description */
+.description {
+    grid-row: 5;
+    grid-column: 1 / span 2;
+
+    padding: var(--medium) 0;
+}
+
 /* Styles quantity buttons */
 .qtyWrapper {
-    grid-row: 5;
+    grid-row: 6;
     grid-column: 1;
 
     display: flex;
@@ -130,7 +138,7 @@
 
 /* Styles Add to Cart Button */
 .addToCartBtn {
-    grid-row: 6;
+    grid-row: 7;
     grid-column: 1 / span 2;
 
     background: var(--beige);
@@ -217,6 +225,7 @@
     .productInfo {
         grid-template-columns: 2fr 1fr;
         column-gap: calc(var(--large) + var(--small));
+        row-gap: calc(var(--medium) + var(--small))
     }
 
     .carouselWrapper {
@@ -228,6 +237,7 @@
     .brand,
     .ratings,
     .price,
+    .description,
     .qtyWrapper,
     .addToCartBtn {
         grid-column: 2;
@@ -250,11 +260,15 @@
         grid-row: 5;
     }
 
-    .qtyWrapper {
+    .description {
         grid-row: 6;
     }
 
-    .addToCartBtn {
+    .qtyWrapper {
         grid-row: 7;
+    }
+
+    .addToCartBtn {
+        grid-row: 8;
     }
 }

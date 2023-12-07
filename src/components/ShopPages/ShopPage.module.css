@@ -26,11 +26,35 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     justify-items: center;
     gap: var(--large);
+    padding: var(--padding-small);
 }
 
 .heading {
     font-size: 2rem;
     padding: var(--medium);
+}
+
+/* Styles links to categories */
+.linksWrapper {
+    padding: 0 var(--padding-small);
+}
+
+.link {
+    color: var(--brown);
+    font-size: var(--medium-font);
+}
+
+/* Styles for smaller devices */
+@media (min-width: 420px) {
+    .linksWrapper {
+        padding: 0 calc(var(--medium) + 5px);
+    }
+}
+
+@media (min-width: 500px) {
+    .link {
+        font-size: 1rem;
+    }
 }
 
 /* Styles for tablets */

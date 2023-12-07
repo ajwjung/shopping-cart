@@ -64,9 +64,27 @@
     margin-top: var(--small);
 }
 
+/* Styles brand name */
+.brand {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+/* Styles product ratings */
+.ratingWrapper {
+    grid-row: 3;
+    grid-column: 2;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: var(--small);
+}
+
+
 /* Styles prices */
 .price {
-    grid-row: 3;
+    grid-row: 4;
     grid-column: 1;
 
     display: flex;
@@ -84,7 +102,7 @@
 
 /* Styles quick view button */
 .quickviewBtn {
-    grid-row: 4;
+    grid-row: 5;
     grid-column: 1;
 
     background: none;
@@ -105,8 +123,79 @@
 }
 
 @media (min-width: 500px) {
+    .productCard {
+        row-gap: var(--medium);
+        column-gap: calc(var(--medium) + var(--small));
+    }
+
     .thumbnailWrapper,
     .thumbnail {
+        grid-row: 1 / span 6;
+        grid-column: 1;
+
         height: 300px;
+    }
+
+    .nameWrapper,
+    .brand,
+    .ratingWrapper,
+    .price,
+    .quickviewBtn {
+        grid-column: 2;
+    }
+
+    .nameWrapper {
+        grid-row: 1;
+    }
+
+    .brand {
+        grid-row: 2;
+    }
+
+    .ratingWrapper {
+        grid-row: 3;
+
+        justify-content: flex-start;
+    }
+
+    .price {
+        grid-row: 4;
+    }
+
+    .quickviewBtn {
+        grid-row: 5;
+    }
+}
+
+@media (min-width: 650px) {
+    .productCard {
+        gap: var(--medium);
+
+    }
+
+    .thumbnailWrapper,
+    .thumbnail {
+        grid-row: 1;
+        grid-column: 1 / span 2;
+    }
+
+    .nameWrapper,
+    .brand,
+    .price,
+    .quickviewBtn {
+        grid-column: 1 / span 2;
+    }
+
+    .nameWrapper {
+        grid-row: 2;
+    }
+
+    .brand {
+        grid-row: 3;
+    }
+
+    .ratingWrapper {
+        grid-column: 2;
+        justify-content: flex-end;
     }
 }

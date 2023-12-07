@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import RatingStars from "../ProductPage/RatingStars";
 import Price from "../../scripts/Price";
 import Display from "../../scripts/Display";
 import QuickView from "./QuickView";
@@ -30,6 +31,15 @@ function ProductCard({ product }) {
                         {Display.capitalizeName(product.title)}
                     </h2>
                 </Link >
+                <p className={styles.brand}>
+                    {product.brand}
+                </p>
+                <div className={styles.ratingWrapper}>
+                    <RatingStars rating={product.rating} />
+                    <p className={styles.productRating}>
+                        {product.rating}
+                    </p>
+                </div>
                 <div className={styles.price}>
                     {product.discountPercentage > 0 &&
                     <p className={`${styles.bold} ${styles.discountPrice}`}>

@@ -105,7 +105,16 @@ function Cart() {
         <>
             <Navbar />
             <div className={styles.cartContent}>
-                <h1 className={styles.heading}>Shopping Cart</h1>
+                <div className={styles.linksWrapper}>
+                    <Link className={styles.link} to="/categories/all">
+                        All
+                    </Link>
+                    <span> / </span>
+                    <Link className={styles.link} to="/cart">
+                        Cart
+                    </Link>
+                </div>
+                <h1 className={styles.heading}>Cart ({itemsInCart.length})</h1>
                 <div className={cartStyle}>
                     {itemsInCart.length > 0 
                         ? itemsInCart.map((item) => 
@@ -115,7 +124,7 @@ function Cart() {
                     }
                 </div>
                 {itemsInCart.length > 0 && <div className={styles.totalOverview}>
-                    <h2>Total Overview</h2>
+                    <h2 className={styles.summaryHeading}>Total Overview</h2>
                     <div className={styles.totalsGrid}>
                         <p>Subtotal</p>
                         <p className={styles.overviewPrice}>
