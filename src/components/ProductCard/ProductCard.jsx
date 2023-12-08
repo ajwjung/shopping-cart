@@ -19,14 +19,22 @@ function ProductCard({ product }) {
     return (
         product && <>
             <div className={styles.productCard}>
-                <Link to={`/product/${product.id}`} className={styles.thumbnailWrapper}>
+                <Link 
+                    to={`/product/${product.id}`} 
+                    className={styles.thumbnailWrapper}
+                    aria-label=""
+                >
                     <img
                         className={styles.thumbnail}
                         src={product.thumbnail}
                         alt={product.title}
                     />
                 </Link>
-                <Link to={`/product/${product.id}`} className={styles.nameWrapper}>
+                <Link 
+                    to={`/product/${product.id}`} 
+                    className={styles.nameWrapper}
+                    aria-label={`View listing for ${product.title}`}
+                >
                     <h2 className={styles.productName}>
                         {Display.capitalizeName(product.title)}
                     </h2>
