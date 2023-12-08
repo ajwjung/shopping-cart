@@ -27,7 +27,7 @@
 .brand {
     grid-row: 2;
     grid-column: 1;
-    font-size: calc(--normal-font);
+    font-size: var(--normal-font);
     font-weight: 500;
 }
 

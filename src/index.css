@@ -17,6 +17,7 @@
 
   /* Custom colors */
   --bg-color: rgb(224, 216, 210);
+  --opaque-cream: rgba(252, 247, 242, 0.8);
   --cream: rgb(245, 239, 233);
   --light-beige: rgb(235, 230, 225);
   --beige: rgb(199, 181, 165);

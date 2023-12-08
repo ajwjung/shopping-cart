@@ -1,5 +1,7 @@
 :root {
     --light-brown-svg: invert(45%) sepia(7%) saturate(1049%) hue-rotate(349deg) brightness(88%) contrast(78%);
+    --red-svg: invert(49%) sepia(23%) saturate(1014%) hue-rotate(316deg) brightness(94%) contrast(89%);
+    --cream-svg: invert(87%) sepia(7%) saturate(714%) hue-rotate(320deg) brightness(115%) contrast(92%);
 }
 
 /* Styles carousel content */
@@ -43,6 +45,97 @@
     border-radius: var(--rounded-square);
 }
 
+/* Styles full view mode's image popup */
+.overlay,
+.fullViewWrapper {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 5;
+}
+
+.overlay {
+    background: var(--light-beige);
+    top: 0;
+    left: 0;
+}
+
+.fullViewWrapper {
+    max-height: 100vh;
+    padding: var(--large);
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--small);
+
+    top: 85px;
+    left: 0px;
+}
+
+/* Styles full view mode's image */
+.fullImageWrapper,
+.fullImage {
+    max-height: 80vh;
+    max-width: 85vw;
+}
+
+.fullImage {
+    max-height: 75vh;
+    object-fit: contain;
+}
+
+/* Styles full view mode's buttons */
+.btnsContainer,
+.arrowsWrapper  {
+    display: flex;
+    gap: var(--large);
+}
+
+.btnsContainer {
+    justify-content: space-evenly;
+}
+
+.closeFullImgBtn,
+.fullLeftArrow,
+.fullRightArrow {
+    height: 40px;
+    width: 40px;
+    padding: var(--small);
+    background: var(--opaque-cream);
+    border-radius: var(--round);
+}
+
+.closeFullImgSvg,
+.fullViewArrow {
+    height: 30px;
+    width: 30px;
+    filter: var(--light-brown-svg);
+}
+
+.closeFullImgSvg {
+    filter: var(--red-svg);
+}
+
+.closeFullImgBtn:hover,
+.closeFullImgBtn:focus,
+.fullLeftArrow:hover,
+.fullLeftArrow:focus,
+.fullRightArrow:hover,
+.fullRightArrow:focus {
+    background: var(--font-color);
+}
+
+.fullViewArrow:hover,
+.fullViewArrow:focus {
+    filter: var(--cream-svg);
+}
+
+.hidden {
+    display: none;
+}
+
 /* Styles circles indicating current displayed image */
 .circlesWrapper {
     grid-row: 2;
@@ -76,12 +169,16 @@
     .productImage {
         height: clamp(300px, 45vh, 550px);
     }
+
+    .fullViewWrapper {
+        gap: var(--medium);
+    }
 }
 
 /* Styles for tablets */
 @media (min-width: 768px) {
     .imgWrapper,
     .productImage {
-        height: clamp(300px, 60vh, 600px);
+        height: clamp(300px, 55vh, 600px);
     }
 }
