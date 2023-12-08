@@ -1,8 +1,8 @@
 .errorMessage,
 .defaultShop {
     height: calc(100vh - 100px);
-    padding: var(--padding-medium);
-    font-size: 1.2rem;
+    padding: var(--large);
+    font-size: var(--large-font);
 
     display: flex;
     flex-direction: column;

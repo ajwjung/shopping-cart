@@ -1,7 +1,4 @@
 :root {
-    --font-color: rgb(50, 50, 50);
-    --bg-color: rgb(224, 216, 210);
-    --brown: rgb(90, 71, 56);
     --brown-svg: invert(25%) sepia(32%) saturate(420%) hue-rotate(344deg) brightness(100%) contrast(90%);
     --badge-color: rgb(240, 78, 78);
 }
@@ -23,7 +20,7 @@ nav {
     height: min-content;
     width: 100%;
     max-width: 100vw;
-    padding: var(--padding-small) var(--padding-medium);
+    padding: var(--medium) var(--large);
     box-shadow: 2px 2px 2px var(--beige);
 
     grid-template-columns: 1fr 3fr 0.5fr;
@@ -39,7 +36,7 @@ nav {
 }
 
 .brandName {
-    font-size: 1.5rem;
+    font-size: calc(var(--normal-font) + 0.5rem);
     padding: var(--small);
 }
 
@@ -51,10 +48,10 @@ nav {
 /* Styles the "Shop All" navlink */
 .navLinks {
     grid-template-columns: 1fr 2fr;
-    gap: var(--padding-small);
+    gap: var(--medium);
 
-    padding: 0 var(--padding-small);
-    margin-left: var(--padding-small);
+    padding: 0 var(--medium);
+    margin-left: var(--medium);
     list-style-type: none;
 }
 
@@ -110,7 +107,7 @@ nav {
 
 @media (min-width: 420px) {
     .brandName {
-        margin-left: var(--padding-small);
+        margin-left: var(--medium);
     }
 
     .shopAllLink {
@@ -121,11 +118,11 @@ nav {
 @media (min-width: 500px) {
     nav {
         grid-template-columns: 1fr 2.5fr 0.5fr;
-        padding: var(--padding-small);
+        padding: var(--medium);
     }
 
     .brandName {
-        font-size: 1.6rem;
+        font-size: calc(var(--normal-font) + 0.6rem);
     }
 
     .shopAll {

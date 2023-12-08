@@ -1,5 +1,5 @@
 :root {
-    --filter-svg: invert(45%) sepia(7%) saturate(1049%) hue-rotate(349deg) brightness(88%) contrast(78%);
+    --light-brown-svg: invert(45%) sepia(7%) saturate(1049%) hue-rotate(349deg) brightness(88%) contrast(78%);
 }
 
 /* Styles carousel content */
@@ -10,7 +10,7 @@
     gap: var(--medium) 0;
 
     background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
+    border-radius: var(--rounded-square);
     padding: var(--medium) var(--small);
 }
 
@@ -40,7 +40,7 @@
 .productImage {
     object-fit: cover;
     object-position: center;
-    border-radius: 2px;
+    border-radius: var(--rounded-square);
 }
 
 /* Styles circles indicating current displayed image */
@@ -52,7 +52,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2px;
+    gap: var(--mini);
 }
 
 .circle {
@@ -61,7 +61,7 @@
 }
 
 .filter {
-    filter: var(--filter-svg);
+    filter: var(--light-brown-svg);
 }
 
 /* Styles for smaller devices */

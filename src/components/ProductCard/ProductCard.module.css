@@ -1,27 +1,9 @@
-:root {
-    --light-beige: rgb(235, 230, 225);
-    --cream: rgb(245, 239, 233);
-    --light-brown: rgb(94, 86, 78);
-    --red: rgb(187, 55, 55);
-    --small: 5px;
-    --medium: 10px;
-    --large: 20px;
-    --small-font: 0.85rem;
-    --medium-font: 0.9rem;
-}
-
-* {
-    margin: 0;
-    box-sizing: border-box;
-    color: var(--font-color);
-}
-
 /* Styles each product card */
 .productCard {
     width: 100%;
-    padding: calc(var(--medium) + 5px);
+    padding: calc(var(--medium) + var(--small));
     background: var(--light-beige);
-    border-radius: 2px;
+    border-radius: var(--rounded-square);
 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -31,7 +13,7 @@
 .productCard:hover,
 .productCard:focus {
     background: var(--cream);
-    border-radius: 5px;
+    border-radius: var(--round);
     scale: 1.02;
 }
 
@@ -48,7 +30,7 @@
 .thumbnail {
     object-fit: cover;
     object-position: top;
-    border-radius: 2px;
+    border-radius: var(--rounded-square);
 }
 
 /* Styles product name */
@@ -60,7 +42,7 @@
 }
 
 .productName {
-    font-size: 1.2rem;
+    font-size: var(--large-font);
     margin-top: var(--small);
 }
 

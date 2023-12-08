@@ -1,9 +1,3 @@
-* {
-    margin: 0;
-    box-sizing: border-box;
-    color: var(--font-color);
-}
-
 /* Styles main content */
 .homeContent {
     height: calc(100vh - 80px);
@@ -29,10 +23,9 @@
 .shopNowBtn {
     width: fit-content;
     background: var(--font-color);
-    padding: var(--padding-small);
-    border-radius: 10px;
+    padding: var(--medium);
+    border-radius: calc(var(--round) * 2);
     color: var(--light-beige);
-    font-weight: 600;
 }
 
 .shopNowBtn:hover,
@@ -54,7 +47,7 @@
     }
     
     .intro {
-        font-size: 1.2rem;
+        font-size: var(--large-font);
     }
 }
 
@@ -76,11 +69,11 @@
     }
 
     .intro {
-        font-size: 1.5rem;
+        font-size: calc(var(--normal-font) + 0.5rem);
     }
 
     .shopNowBtn {
-        padding: var(--padding-small) var(--padding-medium);
-        font-size: 1.1rem;
+        padding: var(--medium) var(--large);
+        font-size: var(--marge-font);
     }
 }

@@ -11,7 +11,7 @@ function Home() {
                     <p className={`${styles.intro} ${styles.bold}`}>
                         Your dream furniture. Our great prices.
                     </p>
-                    <Link className={styles.shopNowBtn} to="/categories/all">
+                    <Link className={`${styles.shopNowBtn} ${styles.bold}`} to="/categories/all">
                         Shop Now
                     </Link>
                 </div>

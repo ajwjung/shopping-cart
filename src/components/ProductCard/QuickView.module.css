@@ -14,7 +14,7 @@
     background: var(--bg-color);
     height: 60vh;
     width: 85vw;
-    padding: var(--padding-medium);
+    padding: var(--large);
     border-radius: 2px;
     box-shadow: 2px 2px 2px var(--brown);
     overflow-y: scroll;
@@ -25,7 +25,7 @@
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: repeat(5, 1fr);
-    gap: var(--padding-small);
+    gap: var(--medium);
 }
 
 /* Styles for 'Close Popup' button */
@@ -83,8 +83,8 @@
     background: var(--light-beige);
     display: grid;
     justify-items: center;
-    padding: var(--padding-small) 0;
-    row-gap: var(--padding-small);
+    padding: var(--medium) 0;
+    row-gap: var(--medium);
 }
 
 .popupImgWrapper,
@@ -126,7 +126,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--padding-small);
+    gap: var(--medium);
 }
 
 .quantity {
@@ -143,7 +143,7 @@
 .popupAddToCartBtn {
     grid-row: 7;
     grid-column: 1 / span 2;
-    margin: var(--padding-small) 0;
+    margin: var(--medium) 0;
 }
 
 .popupAddToCartBtn:hover,
@@ -176,7 +176,7 @@
 /* Styles for smaller devices */
 @media (min-width: 420px) {
     .quickviewPopup {
-        padding: calc(var(--padding-medium) + var(--padding-small));
+        padding: calc(var(--large) + var(--medium));
     }
 }
 
@@ -208,6 +208,6 @@
 @media (min-width: 1024px) {
     .quickviewPopup {
         width: 60vw;
-        padding: calc(var(--padding-medium) * 2);
+        padding: calc(var(--large) * 2);
     }
 }

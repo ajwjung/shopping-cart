@@ -1,15 +1,3 @@
-:root {
-    --small: 5px;
-    --medium: 10px;
-    --large: 20px;
-}
-
-* {
-    margin: 0;
-    box-sizing: border-box;
-    color: var(--font-color);
-}
-
 /* Styles main content */
 .productsContent {
     max-width: 100%;
@@ -26,17 +14,17 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     justify-items: center;
     gap: var(--large);
-    padding: var(--padding-small);
+    padding: var(--medium);
 }
 
 .heading {
-    font-size: 2rem;
+    font-size: calc(var(--normal-font) * 2);
     padding: var(--medium);
 }
 
 /* Styles links to categories */
 .linksWrapper {
-    padding: 0 var(--padding-small);
+    padding: 0 var(--medium);
 }
 
 .link {
@@ -47,20 +35,20 @@
 /* Styles for smaller devices */
 @media (min-width: 420px) {
     .linksWrapper {
-        padding: 0 calc(var(--medium) + 5px);
+        padding: 0 calc(var(--medium) + var(--small));
     }
 }
 
 @media (min-width: 500px) {
     .link {
-        font-size: 1rem;
+        font-size: var(--normal-font);
     }
 }
 
 /* Styles for tablets */
 @media (min-width: 768px) {
     .productsContent {
-        padding: 2rem;
+        padding: calc(var(--margin) * 2);
         margin-top: 50px;
     }
 }
