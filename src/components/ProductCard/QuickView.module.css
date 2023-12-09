@@ -211,3 +211,44 @@
         padding: calc(var(--large) * 2);
     }
 }
+
+/* Styles for large viewports */
+@media (min-width: 1440px) {
+    .quickviewPopup {
+        height: 75vh;
+        padding: calc(var(--large) * 3);
+        top: 15%;
+    }
+
+    .popupName {
+        font-size: calc(var(--normal-font) + 0.4rem);
+    }
+
+    .discountPrice,
+    .originalPrice,
+    .decreaseBtn,
+    .increaseBtn  {
+        font-size: var(--large-font);
+    }
+
+    .popupDescription,
+    .popupBrand,
+    .qtyLabel,
+    .popupAddToCartBtn {
+        font-size: var(--marge-font);
+    }
+
+    .closeBtn {
+        height: 40px;
+        width: 40px;
+    }
+
+    .popupCarousel {
+        padding: var(--large) 0;
+    }
+
+    .popupImgWrapper,
+    .popupImage {
+        height: clamp(400px, 60vh, 600px);
+    }
+}

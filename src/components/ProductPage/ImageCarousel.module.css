@@ -179,6 +179,22 @@
 @media (min-width: 768px) {
     .imgWrapper,
     .productImage {
-        height: clamp(300px, 55vh, 600px);
+        height: clamp(400px, 55vh, 600px);
+    }
+}
+
+/* Styles for large viewports */
+@media (min-width: 1440px) {
+    .imgWrapper,
+    .productImage {
+        height: clamp(500px, 65vh, 750px);
+    }
+
+    .carousel {
+        gap: var(--large) 0;
+    }
+
+    .circlesWrapper {
+        gap: var(--small);
     }
 }

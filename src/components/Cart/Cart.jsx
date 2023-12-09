@@ -68,7 +68,7 @@ function CartItem({ item }) {
                 }}
                 type="button"
             >
-                <Icon path={mdiTrashCanOutline} size={1} />
+                <Icon className={styles.removeItemSvg} path={mdiTrashCanOutline} />
             </button>
         </div>
     )

@@ -52,3 +52,11 @@
         margin-top: 50px;
     }
 }
+
+/* Styles for large viewports */
+@media (min-width: 1440px) {
+    .productsContent {
+        padding: calc(var(--margin) * 2) calc(var(--margin) * 3);
+        margin-top: 50px;
+    }
+}

@@ -261,3 +261,47 @@
         grid-row: 8;
     }
 }
+
+/* Styles for large viewports */
+@media (min-width: 1440px) {
+    .productContent {
+        padding: calc(var(--margin) * 2) calc(var(--margin) * 3);
+    }
+
+    .productInfo {
+        grid-template-columns: 1.5fr repeat(2, 0.5fr);
+        column-gap: calc(var(--large) * 2);
+    }
+
+    .productName {
+        grid-column: 2 / span 2;
+    }
+
+    .brand {
+        grid-column: 2;
+    }
+
+    .ratings {
+        grid-row: 3;
+        grid-column: 3;
+        justify-content: flex-end;
+    }
+
+    .price {
+        grid-row: 4;
+    }
+
+    .description {
+        grid-row: 5;
+        grid-column: 2 / span 2;
+    }
+
+    .qtyWrapper {
+        grid-row: 6;
+    }
+
+    .addToCartBtn {
+        grid-row: 7;
+        grid-column: 2 / span 2;
+    }
+}

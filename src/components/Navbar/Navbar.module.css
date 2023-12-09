@@ -105,6 +105,7 @@ nav {
     font-weight: 600;
 }
 
+/* Styles for smaller devices */
 @media (min-width: 420px) {
     .brandName {
         margin-left: var(--medium);
@@ -135,8 +136,22 @@ nav {
     }
 }
 
+/* Styles for tablets */
 @media (min-width: 700px) {
     nav {
         grid-template-columns: 1fr 2fr 0.5fr;
+    }
+}
+
+/* Styles for large viewports */
+@media (min-width: 1024px) {
+    nav {
+        padding: var(--medium) var(--large);
+    }
+}
+
+@media (min-width: 1024px) {
+    nav {
+        padding: var(--medium) calc(var(--large) * 2);
     }
 }
