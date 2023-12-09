@@ -1,6 +1,6 @@
 # Shopping Cart
 
-- Live Demo
+- [Live Demo](https://main--fanciful-dodol-d97c57.netlify.app/)
 
 ## Objective
 
