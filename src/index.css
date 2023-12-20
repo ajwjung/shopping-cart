@@ -25,6 +25,12 @@
   --brown: rgb(90, 71, 56);
   --red: rgb(187, 55, 55);
   --font-color: rgb(50, 50, 50);
+
+  /* Custom colors used in dark mode only */
+  --dm-brown: rgb(185, 167, 149);
+  --dm-pink: rgb(253, 181, 181);
+  --dm-red: rgb(255, 120, 120);
+  --dm-gray-brown: rgb(87, 79, 71);
   
   /* Custom gap/margin/padding sizes */
   --mini: 2px;
@@ -94,5 +100,24 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: var(--cream);
+    background-color: var(--font-color);
+  }
+  a {
+    color: var(--cream);
+  }
+  a:hover {
+    color: var(--beige);
+  }
+  button {
+    background-color: #3a3a3a;
+  }
+  button:hover {
+    border-color: var(--beige);
   }
 }

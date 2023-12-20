@@ -54,3 +54,29 @@
         margin-left: calc(var(--large) + var(--small));
     }
 }
+
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+    button:focus,
+    button:focus-visible {
+        outline-color: var(--beige);
+    }
+
+    .dropdownBtn {
+        color: var(--cream);
+    }
+
+    .dropdownBtn:hover,
+    .dropDownBtn:focus {
+        color: var(--beige);
+    }
+
+    .dropdown {
+        background: var(--font-color);
+        border: 2px solid var(--light-brown);
+    }
+
+    .link {
+        color: var(--cream);
+    }
+}

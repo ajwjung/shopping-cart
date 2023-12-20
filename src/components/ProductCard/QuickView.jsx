@@ -64,6 +64,9 @@ function QuickView({ updateClickedStatus, product, productPrice }) {
                     product={product} 
                     wrapperClassName={styles.popupQtyWrapper}
                     qtyLabelClassName={styles.qtyLabel}
+                    inputClassName={styles.popupQtyInput}
+                    increaseClassName={styles.popupIncreaseBtn}
+                    decreaseClassName={styles.popupDecreaseBtn}
                     cartBtnClassName={styles.popupAddToCartBtn}
                 />
                 <Link className={styles.goToProduct} to={`/product/${product.id}`}>

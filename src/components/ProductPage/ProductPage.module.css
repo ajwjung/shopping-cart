@@ -305,3 +305,53 @@
         grid-column: 2 / span 2;
     }
 }
+
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+    * {
+        color: var(--cream);
+    }
+
+    .link {
+        color: var(--light-beige);
+    }
+
+    .link:hover,
+    .link:focus {
+        color: var(--beige);
+        text-decoration: underline;
+    }
+
+    .originalPrice {
+        color: var(--beige);
+        font-style: italic;
+    }
+
+    .discountPrice {
+        color: var(--dm-red);
+    }
+
+    .quantity {
+        background-color: var(--font-color);
+        border: 1px solid var(--beige);
+        border-radius: var(--rounded-square);
+    }
+
+    .increaseBtn,
+    .decreaseBtn,
+    .addToCartBtn {
+        background: var(--beige);
+        color: var(--font-color);
+    }
+
+    .increaseBtn:hover,
+    .increaseBtn:focus,
+    .decreaseBtn:hover,
+    .decreaseBtn:focus,
+    .addToCartBtn:hover,
+    .addToCartBtn:focus {
+        background: var(--light-brown);
+        color: var(--cream);
+    }
+    
+}

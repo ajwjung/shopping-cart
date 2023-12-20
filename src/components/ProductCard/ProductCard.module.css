@@ -181,3 +181,28 @@
         justify-content: flex-end;
     }
 }
+
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+    .productCard,
+    .productCard:hover,
+    .productCard:focus {
+        background: var(--dm-gray-brown);
+    }
+
+    .productName:hover,
+    .productName:focus,
+    .quickviewBtn:hover,
+    .quickviewBtn:focus {
+        font-style: italic;
+    }
+
+    .originalPrice {
+        color: var(--light-beige);
+        font-style: italic;
+    }
+
+    .discountPrice {
+        color: var(--dm-pink);
+    }
+}

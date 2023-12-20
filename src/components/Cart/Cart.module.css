@@ -1,3 +1,7 @@
+:root {
+    --dm-hover-svg: invert(35%) saturate(630%) hue-rotate(356deg) brightness(110%) contrast(160%);
+}
+
 /* Styles main content */
 .cartContent {
     max-width: 100%;
@@ -382,5 +386,70 @@ input {
     .totalOverview,
     .checkout {
         grid-column: 3;
+    }
+}
+
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+    * {
+        color: var(--cream);
+    }
+
+    .link,
+    .productName,
+    .productTotal,
+    .qty > label,
+    .checkout:hover,
+    .checkout:focus,
+    .checkout {
+        color: var(--light-beige);
+    }
+
+    .link:hover,
+    .link:focus {
+        color: var(--beige);
+        text-decoration: underline;
+    }
+
+    /* Styles for empty cart */
+    .continueShopping {
+        color: var(--cream);
+        background: var(--light-brown);
+    }
+
+    /* Styles for populated cart */
+    .cartedItem {
+        background: var(--dm-gray-brown);
+    }
+
+    .productName:hover,
+    .productName:focus {
+        color: var(--light-beige);
+        font-style: italic;
+    }
+
+    .discountedTotal {
+        color: var(--dm-pink);
+    }
+
+    .productTotal {
+        font-style: italic;
+    }
+
+    .removeItemSvg:hover,
+    .removeItemSvg:focus {
+        filter: var(--dm-hover-svg);
+    }
+
+    .checkout {
+        background: var(--dm-gray-brown);
+    }
+    
+    .continueShopping:hover,
+    .continueShopping:focus,
+    .checkout:hover,
+    .checkout:focus { 
+        color: var(--font-color);
+        background: var(--beige);
     }
 }

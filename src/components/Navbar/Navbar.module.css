@@ -1,6 +1,7 @@
 :root {
     --brown-svg: invert(25%) sepia(32%) saturate(420%) hue-rotate(344deg) brightness(100%) contrast(90%);
     --badge-color: rgb(240, 78, 78);
+    --dm-beige-svg: invert(35%) sepia(5%) saturate(629%) hue-rotate(360deg) brightness(110%) contrast(84%);
 }
 
 * {
@@ -153,5 +154,29 @@ nav {
 @media (min-width: 1024px) {
     nav {
         padding: var(--medium) calc(var(--large) * 2);
+    }
+}
+
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+    nav {
+        background: var(--font-color);
+    }
+
+    .brandName,
+    .shopAllLink {
+        color: var(--cream);
+    }
+
+    .brandName:hover,
+    .brandName:focus,
+    .shopAllLink:hover,
+    .shopAllLink:focus {
+        color: var(--beige);
+    }
+
+    .cartIcon:hover,
+    .cartIcon:focus {
+        filter: var(--dm-beige-svg);
     }
 }

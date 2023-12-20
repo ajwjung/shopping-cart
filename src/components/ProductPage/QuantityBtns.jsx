@@ -3,7 +3,8 @@ import { ShopContext } from "../App";
 import PropTypes from "prop-types";
 import styles from "./ProductPage.module.css";
 
-function QuantityBtns({ product, wrapperClassName, qtyLabelClassName, cartBtnClassName }) {
+function QuantityBtns({ product, wrapperClassName, qtyLabelClassName, 
+    inputClassName, increaseClassName, decreaseClassName, cartBtnClassName }) {
     const [quantity, setQuantity] = useState(1);
     const [isClicked, setIsClicked] = useState(false);
     const { handleAddToCart } = useContext(ShopContext);
@@ -11,9 +12,9 @@ function QuantityBtns({ product, wrapperClassName, qtyLabelClassName, cartBtnCla
     function handleChangeQuantity(e) {
         const inputValue = Number(e.target.value);
 
-        if (e.target.className === `${styles.decreaseBtn}`) {
+        if (e.target.className === `${decreaseClassName}`) {
             (quantity - 1 > 0) && setQuantity(quantity - 1);
-        } else if (e.target.className === `${styles.increaseBtn}`) {
+        } else if (e.target.className === `${increaseClassName}`) {
             (quantity + 1 <= product.stock) && setQuantity(quantity + 1);
         } else if (e.target.id === "quantity") {
             // Highest accepted value is the max number in stock
@@ -45,13 +46,13 @@ function QuantityBtns({ product, wrapperClassName, qtyLabelClassName, cartBtnCla
                 </label>
                 <div className={styles.qtyBtns}>
                     <button
-                        className={styles.decreaseBtn}
+                        className={decreaseClassName}
                         onClick={handleChangeQuantity}
                         type="button"
                     >-</button>
                     <input
                         type="text"
-                        className={styles.quantity}
+                        className={inputClassName}
                         id="quantity"
                         name="quantity"
                         value={quantity}
@@ -60,7 +61,7 @@ function QuantityBtns({ product, wrapperClassName, qtyLabelClassName, cartBtnCla
                     />
                     <button
                         onClick={handleChangeQuantity}
-                        className={styles.increaseBtn}
+                        className={increaseClassName}
                         type="button"
                     >+</button>
                 </div>
@@ -99,6 +100,9 @@ QuantityBtns.propTypes = {
     }).isRequired,
     wrapperClassName: PropTypes.string.isRequired,
     qtyLabelClassName: PropTypes.string.isRequired,
+    inputClassName: PropTypes.string.isRequired,
+    increaseClassName: PropTypes.string.isRequired,
+    decreaseClassName: PropTypes.string.isRequired,
     cartBtnClassName: PropTypes.string.isRequired,
 }
 

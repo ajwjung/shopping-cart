@@ -77,3 +77,20 @@
         font-size: var(--marge-font);
     }
 }
+
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+    .homeContent {
+        filter: brightness(95%);
+    }
+
+    .intro {
+        color: var(--font-color);
+    }
+
+    .shopNowBtn:hover,
+    .shopNowBtn:focus {
+        color: var(--cream);
+        background: var(--brown);
+    }
+}

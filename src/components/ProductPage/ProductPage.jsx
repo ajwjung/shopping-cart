@@ -101,7 +101,12 @@ function ProductPage() {
                     <p className={styles.description}>
                         {Display.formatDescription(productData.description)}
                     </p>
-                    <QuantityBtns product={productData} />
+                    <QuantityBtns 
+                        product={productData} 
+                        inputClassName={styles.quantity} 
+                        increaseClassName={styles.increaseBtn}
+                        decreaseClassName={styles.decreaseBtn}
+                    />
                 </div>
             </main>
         </>

@@ -129,12 +129,24 @@
     gap: var(--medium);
 }
 
-.quantity {
-    height: 40px;
+.popupQtyInput {
+    height: 30px;
 }
 
-.decreaseBtn,
-.increaseBtn,
+.popupIncreaseBtn,
+.popupDecreaseBtn {
+    height: 30px;
+    width: 30px;
+    padding: var(--medium);
+    border-radius: var(--round);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupDecreaseBtn,
+.popupIncreaseBtn,
 .popupAddToCartBtn {
     background: var(--beige);
 }
@@ -226,8 +238,8 @@
 
     .discountPrice,
     .originalPrice,
-    .decreaseBtn,
-    .increaseBtn  {
+    .popupDecreaseBtn,
+    .popupIncreaseBtn  {
         font-size: var(--large-font);
     }
 
@@ -250,5 +262,69 @@
     .popupImgWrapper,
     .popupImage {
         height: clamp(400px, 60vh, 600px);
+    }
+}
+
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+    .overlay {
+        background: rgba(100, 95, 90, 0.7);
+    }
+
+    .quickviewPopup {
+        background: var(--font-color);
+        box-shadow: 2px 2px 2px var(--light-brown);
+    }
+
+    .discountPrice {
+        color: var(--dm-pink);
+    }
+ 
+    .originalPrice,
+    .goToProduct {
+        color: var(--light-beige);
+    }
+
+    .popupCarousel {
+        background: none;
+    }
+
+    .popupQtyInput {
+        border: 1px solid var(--beige);
+        border-radius: var(--rounded-square);
+    }
+
+    .popupIncreaseBtn,
+    .popupDecreaseBtn,
+    .popupAddToCartBtn {
+        background: var(--beige);
+        color: var(--font-color);
+    }
+
+    .popupIncreaseBtn:hover,
+    .popupIncreaseBtn:focus,
+    .popupDecreaseBtn:hover,
+    .popupDecreaseBtn:focus,
+    .popupAddToCartBtn:hover,
+    .popupAddToCartBtn:focus {
+        background: var(--dm-gray-brown);
+        color: var(--light-beige);
+    }
+
+    .goToProduct,
+    .goToProduct:hover,
+    .goToProduct:focus {
+        color: var(--cream);
+    }
+
+    .goToProduct:hover,
+    .goToProduct:focus {
+        font-style: italic;
+    }
+
+    .closeBtn:hover,
+    .closeBtn:focus {
+        filter: var(--dm-hover-svg);
+        cursor: pointer;
     }
 }

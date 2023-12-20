@@ -198,3 +198,15 @@
         gap: var(--small);
     }
 }
+
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+    .carousel {
+        background: none;
+        border: 1px solid var(--light-brown);
+    }
+
+    .filter {
+        filter: var(--dm-hover-svg);
+    }
+}
